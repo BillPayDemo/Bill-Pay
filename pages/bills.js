@@ -1,18 +1,26 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
-import useSWR from "swr";
+import useSWR, {useSWRConfig} from "swr";
+import PayButton from "../components/PayButton";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Bills() {
+  const {mutate} = useSWRConfig();
   const {data, error} = useSWR("/api/bills", fetcher);
+
+  const handleClick = (id) => {
+    axios.put("/api/bills", {id: id});
+    mutate("/api/bills");
+  };
 
   const listBills = (bills) => (
     <ul>
       {bills.map((bill) => (
         <li key={bill.id}>
           <pre>{JSON.stringify(bill, null, 2)}</pre>
+          <PayButton onClick={() => handleClick(bill.id)} label="Pay" />
         </li>
       ))}
     </ul>
