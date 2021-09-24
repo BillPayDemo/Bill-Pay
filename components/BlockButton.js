@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function PayButton({onClick, label}) {
+export default function BlockButton({onClick, label}) {
   const [double, setDouble] = useState(false);
   return (
     <button
