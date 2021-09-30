@@ -3,7 +3,8 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import useSWR, { useSWRConfig } from "swr";
 import BlockButton from "../components/BlockButton";
-import CompanyHeader from "../components/CompanyHeader/CompanyHeader";
+import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
+import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -44,7 +45,12 @@ export default function Bills() {
 
 	return (
 		<div>
-			<CompanyHeader></CompanyHeader>
+			<CompanyHeader />
+			<TitleWithSubHeadings
+				mainTitle="Bill Pay"
+				upperTitle="tbc"
+				lowerTitle="Easily view and pay outstanding supplier invoices"
+			/>
 		</div>
 	);
 }
