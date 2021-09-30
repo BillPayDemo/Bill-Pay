@@ -1,21 +1,20 @@
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
 
-	position: absolute;
-	width: 1216px;
-	height: 121px;
-	left: 352px;
-	margin-top: 48px;
+  position: absolute;
+  height: 121px;
+  left: 352px;
+  margin-top: 48px;
 }
 
 .smallText {
-	color: #6F749A;
-	margin: 0px;
+  color: #6f749a;
+  margin: 0px;
 }
 
 .largeText {
-	margin: 8px 0px;
+  margin: 8px 0px;
 }

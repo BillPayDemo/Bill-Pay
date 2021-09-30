@@ -1,0 +1,13 @@
+.footerContainer {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  background-color: #0054a8;
+  color: #ffffff;
+  padding: 5px 0;
+  font-family: "Avenir Medium";
+}
