@@ -2,7 +2,7 @@ import React from "react";
 import s from "./CompanyHeader.module.css";
 import { BankIcon, Typography } from "@codat/orchard-ui";
 
-export default function CompanyHeader() {
+export const CompanyHeader = () => {
 	return (
 		<div className={s.header}>
 			<BankIcon fillColor="#482DEB" className={s.icon} />
@@ -16,4 +16,4 @@ export default function CompanyHeader() {
 			</Typography>
 		</div>
 	);
-}
+};

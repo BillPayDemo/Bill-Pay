@@ -3,13 +3,19 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import useSWR, { useSWRConfig } from "swr";
 import BlockButton from "../components/BlockButton";
-import CompanyHeader from "../components/CompanyHeader/CompanyHeader";
+import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
+import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Bills() {
 	const { mutate } = useSWRConfig();
-	const { data, error } = useSWR("/api/bills", fetcher);
+	const { data: dataBills, error: errorBills } = useSWR("/api/bills", fetcher);
+	const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
+		"/api/companyInfo",
+		fetcher
+	);
+
 	const handlePayClick = (id) => {
 		axios.put("/api/bills", { id: id });
 		mutate("/api/bills");
@@ -44,7 +50,14 @@ export default function Bills() {
 
 	return (
 		<div>
-			<CompanyHeader></CompanyHeader>
+			<CompanyHeader />
+			{dataCompanyInfo !== undefined && (
+				<TitleWithSubHeadings
+					mainTitle="Bill Pay"
+					upperTitle={dataCompanyInfo.companyName}
+					lowerTitle="Easily view and pay outstanding supplier invoices"
+				/>
+			)}
 		</div>
 	);
 }
