@@ -10,7 +10,11 @@ const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Bills() {
 	const { mutate } = useSWRConfig();
-	const { data, error } = useSWR("/api/bills", fetcher);
+	// @ debt - to be reused when handling bills
+	//const { data, error } = useSWR("/api/bills", fetcher);
+
+	const { data, error } = useSWR("/api/companyInfo", fetcher);
+
 	const handlePayClick = (id) => {
 		axios.put("/api/bills", { id: id });
 		mutate("/api/bills");
@@ -46,11 +50,13 @@ export default function Bills() {
 	return (
 		<div>
 			<CompanyHeader />
-			<TitleWithSubHeadings
-				mainTitle="Bill Pay"
-				upperTitle="tbc"
-				lowerTitle="Easily view and pay outstanding supplier invoices"
-			/>
+			{data !== undefined && (
+				<TitleWithSubHeadings
+					mainTitle="Bill Pay"
+					upperTitle={data.companyName}
+					lowerTitle="Easily view and pay outstanding supplier invoices"
+				/>
+			)}
 		</div>
 	);
 }
