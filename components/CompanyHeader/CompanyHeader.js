@@ -12,7 +12,7 @@ export default function CompanyHeader() {
 				}}
 				variant="h3"
 			>
-				CoBank{" "}
+				CoBank{}
 			</Typography>
 		</div>
 	);
