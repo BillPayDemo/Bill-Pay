@@ -8,4 +8,7 @@ module.exports = {
     CODAT_PAYMENT_ACCOUNT_ID: process.env.CODAT_PAYMENT_ACCOUNT_ID,
     CODAT_PAYMENT_ACCOUNT_NAME: process.env.CODAT_PAYMENT_ACCOUNT_NAME,
   },
+  images: {
+    domains: ["www.theodo.co.uk"],
+  },
 };
