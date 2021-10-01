@@ -4,7 +4,7 @@ import s from "./ViewButton.module.css";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { IconButton } from "@mui/material";
-import { modalStyling, closeButtonStyling } from "./styling";
+import { modalStyling, closeButtonStyling } from "../../Modal.styling";
 
 export const ViewButton = (args) => {
   const [open, setOpen] = React.useState(false);

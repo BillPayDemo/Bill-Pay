@@ -3,6 +3,9 @@ import { Button } from "@codat/orchard-ui";
 import s from "./PayButton.module.css";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { IconButton } from "@mui/material";
+import { modalStyling, closeButtonStyling } from "../../Modal.styling";
+import { CloseIcon } from "@codat/orchard-ui";
 
 export const PayButton = () => {
   const [open, setOpen] = React.useState(false);
@@ -15,11 +18,17 @@ export const PayButton = () => {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        BackdropProps={{ style: { opacity: 0.3 } }}
+        BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
       >
-        <Box></Box>
+        <Box sx={modalStyling}>
+          <IconButton
+            size="small"
+            onClick={handleClose}
+            style={closeButtonStyling}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
       </Modal>
     </div>
   );
