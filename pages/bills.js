@@ -26,28 +26,20 @@ export default function Bills() {
     axios.post("/api/bills", { action: "sync" });
   };
 
-  const listBills = (bills) => (
-    <ul>
-      {bills.map((bill) => (
-        <li key={bill.id}>
-          <pre>
-            {JSON.stringify(
-              {
-                id: bill.id,
-                status: bill.status,
-                totalAmount: bill.totalAmount,
-                amountDue: bill.amountDue,
-                issueDate: bill.issueDate,
-              },
-              null,
-              2
-            )}
-          </pre>
-          <BlockButton onClick={() => handlePayClick(bill.id)} label="Pay" />
-        </li>
-      ))}
-    </ul>
-  );
+  const listBills =
+    dataBills !== undefined &&
+    dataBills.map((bill) => ({
+      id: bill.id,
+      status: bill.status,
+      totalAmount: bill.totalAmount,
+      amountDue: bill.amountDue,
+      issueDate: bill.issueDate,
+      currency: bill.currency,
+      supplierName: bill.supplierRef.supplierName,
+      accountName: bill.lineItems[0].accountRef?.name ?? "",
+    }));
+  // @debt Remove this once ticket #18 is validated
+  console.log(listBills);
 
   return (
     <div>
