@@ -36,7 +36,6 @@ export const FormattedCell = ({ text }) => {
         <Typography
           style={{
             margin: 0,
-            fontSize: "12px",
           }}
           variant="small"
         >
