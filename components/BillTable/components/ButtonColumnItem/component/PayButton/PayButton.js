@@ -1,21 +1,20 @@
-import { TextLink, CloseIcon } from "@codat/orchard-ui";
 import React from "react";
-import s from "./ViewButton.module.css";
-import Box from "@mui/material/Box";
+import { Button } from "@codat/orchard-ui";
+import s from "./PayButton.module.css";
 import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 import { IconButton } from "@mui/material";
 import { modalStyling, closeButtonStyling } from "../../Modal.styling";
+import { CloseIcon } from "@codat/orchard-ui";
 
-export const ViewButton = (args) => {
+export const PayButton = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <TextLink onClick={handleOpen} className={s.linkText}>
-        View
-      </TextLink>
+      <Button label="Pay" className={s.buttonText} onClick={handleOpen} />
       <Modal
         open={open}
         onClose={handleClose}
