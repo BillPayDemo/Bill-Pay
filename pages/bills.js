@@ -5,6 +5,7 @@ import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
 import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 import { BillTable } from "../components/BillTable/BillTable";
 import Divider from "@mui/material/Divider";
+import { Footer } from "../components/Footer/Footer";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -61,6 +62,7 @@ export default function Bills() {
 				)}
 				<Divider />
 				<BillTable />
+				<Footer />
 			</div>
 		</div>
 	);
