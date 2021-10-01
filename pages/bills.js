@@ -1,10 +1,10 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import axios from "axios";
 import useSWR, { useSWRConfig } from "swr";
 import BlockButton from "../components/BlockButton";
 import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
 import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
+import { BillTable } from "../components/BillTable/BillTable";
+import Divider from "@mui/material/Divider";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -51,13 +51,17 @@ export default function Bills() {
 	return (
 		<div>
 			<CompanyHeader />
-			{dataCompanyInfo !== undefined && (
-				<TitleWithSubHeadings
-					mainTitle="Bill Pay"
-					upperTitle={dataCompanyInfo.companyName}
-					lowerTitle="Easily view and pay outstanding supplier invoices"
-				/>
-			)}
+			<div style={{ paddingRight: "25%", paddingLeft: "25%" }}>
+				{dataCompanyInfo !== undefined && (
+					<TitleWithSubHeadings
+						mainTitle="Bill Pay"
+						upperTitle={dataCompanyInfo.companyName}
+						lowerTitle="Easily view and pay outstanding supplier invoices"
+					/>
+				)}
+				<Divider />
+				<BillTable />
+			</div>
 		</div>
 	);
 }
