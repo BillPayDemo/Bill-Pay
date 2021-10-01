@@ -8,13 +8,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import s from "./BillTable.module.css";
 import { Typography } from "@codat/orchard-ui";
+import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
 
 // This will be necessary when adding rows later
-function createData(date, supplier, reference, amountDue) {
-  return { date, supplier, reference, amountDue };
+function createData(name, date, supplier, reference, amountDue) {
+  return { name, date, supplier, reference, amountDue };
 }
 
-const rows = [];
+const rows = [createData("", "", "", "", "")];
 
 export const FormattedColumnCell = ({ text }) => {
   return (
@@ -44,13 +45,17 @@ export const BillTable = () => {
       }}
       className={s.table}
     >
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table
+        sx={{ minWidth: 650, tableLayout: "fixed" }}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
             <FormattedColumnCell text="Date" />
             <FormattedColumnCell text="Supplier" />
             <FormattedColumnCell text="Reference" />
             <FormattedColumnCell text="Amount Due" />
+            <FormattedColumnCell text="" />
           </TableRow>
         </TableHead>
         <TableBody>
@@ -63,6 +68,7 @@ export const BillTable = () => {
               <TableCell align="left">{row.supplier}</TableCell>
               <TableCell align="left">{row.reference}</TableCell>
               <TableCell align="left">{row.amountDue}</TableCell>
+              <ButtonColumnItem />
             </TableRow>
           ))}
         </TableBody>
