@@ -13,9 +13,8 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Accounting</h1>
         <h1 className="title">
-          Get your{" "}
-          <Link href="/bills">
-            <a>Bills</a>
+          <Link href="/companyname">
+            <a>Click here to create a new company</a>
           </Link>
         </h1>
       </main>
