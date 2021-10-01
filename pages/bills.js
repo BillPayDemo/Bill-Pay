@@ -38,13 +38,11 @@ export default function Bills() {
       supplierName: bill.supplierRef.supplierName,
       accountName: bill.lineItems[0].accountRef?.name ?? "",
     }));
-  // @debt Remove this once ticket #18 is validated
-  console.log(listBills);
 
   return (
     <div>
       <CompanyHeader />
-      <div style={{ paddingRight: "20%", paddingLeft: "20%" }}>
+      <div style={{ paddingRight: "15%", paddingLeft: "15%" }}>
         {dataCompanyInfo !== undefined && (
           <TitleWithSubHeadings
             mainTitle="Bill Pay"
@@ -53,7 +51,7 @@ export default function Bills() {
           />
         )}
         <Divider />
-        <BillTable />
+        <BillTable billData={listBills} />
         <Footer />
       </div>
     </div>

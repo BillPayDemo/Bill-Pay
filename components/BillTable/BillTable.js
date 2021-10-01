@@ -10,20 +10,31 @@ import s from "./BillTable.module.css";
 import { Typography } from "@codat/orchard-ui";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
 
-// This will be necessary when adding rows later
-function createData(name, date, supplier, reference, amountDue) {
-  return { name, date, supplier, reference, amountDue };
-}
-
-const rows = [createData("", "", "", "", "")];
-
-export const FormattedColumnCell = ({ text }) => {
+export const FormattedColumnHeaderCell = ({ text }) => {
   return (
     <>
       <TableCell align="left">
         <Typography
           style={{
             color: "#5f6374",
+            margin: 0,
+            fontSize: "14px",
+          }}
+          variant="small"
+        >
+          {text}
+        </Typography>
+      </TableCell>
+    </>
+  );
+};
+
+export const FormattedCell = ({ text }) => {
+  return (
+    <>
+      <TableCell align="left" style={{ padding: "18px" }}>
+        <Typography
+          style={{
             margin: 0,
           }}
           variant="small"
@@ -35,7 +46,7 @@ export const FormattedColumnCell = ({ text }) => {
   );
 };
 
-export const BillTable = () => {
+export const BillTable = (billData) => {
   return (
     <TableContainer
       components={{
@@ -51,26 +62,33 @@ export const BillTable = () => {
       >
         <TableHead>
           <TableRow>
-            <FormattedColumnCell text="Date" />
-            <FormattedColumnCell text="Supplier" />
-            <FormattedColumnCell text="Reference" />
-            <FormattedColumnCell text="Amount Due" />
-            <FormattedColumnCell text="" />
+            <FormattedColumnHeaderCell text="Date" />
+            <FormattedColumnHeaderCell text="Supplier" />
+            <FormattedColumnHeaderCell text="Reference" />
+            <FormattedColumnHeaderCell text="Amount Due" />
+            <FormattedColumnHeaderCell text="" />
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="left">{row.date}</TableCell>
-              <TableCell align="left">{row.supplier}</TableCell>
-              <TableCell align="left">{row.reference}</TableCell>
-              <TableCell align="left">{row.amountDue}</TableCell>
-              <ButtonColumnItem />
-            </TableRow>
-          ))}
+          {billData.billData &&
+            billData.billData.map((bill) => (
+              <TableRow
+                key={bill.id}
+                sx={{
+                  "&:last-child td, &:last-child th": {
+                    border: 0,
+                  },
+                }}
+              >
+                <FormattedCell text={bill.issueDate} />
+                <FormattedCell text={bill.supplierName} />
+                <FormattedCell text={bill.accountName} />
+                <FormattedCell text={bill.amountDue} />
+                <TableCell style={{ padding: "12px" }}>
+                  <ButtonColumnItem />
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
