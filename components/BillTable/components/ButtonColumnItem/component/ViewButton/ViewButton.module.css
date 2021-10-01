@@ -1,0 +1,10 @@
+.linkText {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.crossButton {
+  position: relative;
+  top: 16px;
+  right: 16px;
+}
