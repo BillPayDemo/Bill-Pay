@@ -9,6 +9,7 @@ export const CompanyHeader = () => {
       <Typography
         style={{
           color: "#482DEB",
+          marginBottom: "0px",
         }}
         variant="h3"
       >

@@ -52,7 +52,7 @@ export default function Bills() {
   return (
     <div>
       <CompanyHeader />
-      <div style={{ paddingRight: "25%", paddingLeft: "25%" }}>
+      <div style={{ paddingRight: "20%", paddingLeft: "20%" }}>
         {dataCompanyInfo !== undefined && (
           <TitleWithSubHeadings
             mainTitle="Bill Pay"

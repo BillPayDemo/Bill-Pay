@@ -1,0 +1,17 @@
+.buttonsLayout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  padding: 12px;
+  gap: 14.5px;
+}
+
+.linkText {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.buttonText {
+  font-size: 12px;
+}
