@@ -35,14 +35,7 @@ export const PayButton = (billData) => {
               <CloseIcon />
             </IconButton>
             {billData && (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "flex-end",
-                }}
-              >
+              <div className={s.topSectionContainer}>
                 <TitleWithSubHeadings
                   upperTitle={bill.id}
                   mainTitle="Bill Payment"
