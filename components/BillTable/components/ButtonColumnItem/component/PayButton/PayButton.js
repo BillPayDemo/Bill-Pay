@@ -10,11 +10,10 @@ import { DotDataPoint } from "../../../../../DotDataPoint/DotDataPoint";
 import { TitleWithSubHeadings } from "../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
 import { getFormattedAmountDue } from "../../../../BillTable.helpers";
 
-export const PayButton = (billData) => {
+export const PayButton = ({ billData }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const bill = billData.billData;
 
   return (
     <tr>
@@ -36,26 +35,23 @@ export const PayButton = (billData) => {
             {billData && (
               <div className={s.topSectionContainer}>
                 <TitleWithSubHeadings
-                  upperTitle={bill.id}
+                  upperTitle={billData.id}
                   mainTitle="Bill Payment"
                   lowerTitle={
                     <DotDataPoint
-                      leftText={bill.supplierName}
-                      rightText={bill.accountName}
+                      leftText={billData.supplierName}
+                      rightText={billData.accountName}
                     />
                   }
                   mainTitleCustomFontSize="26px"
-                  customPaddingBottom="16px"
                 />
                 <TitleWithSubHeadings
                   upperTitle="Amount Due"
                   mainTitle={getFormattedAmountDue(
-                    bill.currency,
-                    bill.amountDue
+                    billData.currency,
+                    billData.amountDue
                   )}
-                  lowerTitle={null}
                   mainTitleCustomFontSize="20px"
-                  customPaddingBottom="16px"
                 />
               </div>
             )}
