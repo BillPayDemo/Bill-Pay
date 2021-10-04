@@ -16,4 +16,6 @@ export const closeButtonStyling = {
   position: "absolute",
   top: "16px",
   right: "16px",
+  width: "18px",
+  height: "18px",
 };
