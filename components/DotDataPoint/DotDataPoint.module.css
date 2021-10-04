@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.dotSeparator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2px;
+}
+
+.text {
+  margin: 0;
+}

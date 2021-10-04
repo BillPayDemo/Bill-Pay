@@ -1,6 +1,5 @@
 import axios from "axios";
 import useSWR, { useSWRConfig } from "swr";
-import BlockButton from "../components/BlockButton";
 import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
 import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 import { BillTable } from "../components/BillTable/BillTable";
@@ -42,13 +41,17 @@ export default function Bills() {
   return (
     <div>
       <CompanyHeader />
-      <div style={{ paddingRight: "15%", paddingLeft: "15%" }}>
+      <div
+        style={{ paddingTop: "48px", paddingRight: "15%", paddingLeft: "15%" }}
+      >
         {dataCompanyInfo !== undefined && (
-          <TitleWithSubHeadings
-            mainTitle="Bill Pay"
-            upperTitle={dataCompanyInfo.companyName}
-            lowerTitle="Easily view and pay outstanding supplier invoices"
-          />
+          <div style={{ marginBottom: "25px" }}>
+            <TitleWithSubHeadings
+              mainTitle="Bill Pay"
+              upperTitle={dataCompanyInfo.companyName}
+              lowerTitle="Easily view and pay outstanding supplier invoices"
+            />
+          </div>
         )}
         <Divider />
         <BillTable billData={listBills} />
