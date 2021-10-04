@@ -2,7 +2,6 @@ export const modalStyling = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  height: "20%",
   width: "40%",
   transform: "translate(-50%, -50%)",
   p: 4,
