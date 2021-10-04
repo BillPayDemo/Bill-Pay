@@ -1,16 +1,12 @@
 .container {
-	display: flex;
-	flex-direction: column;
-
-	padding-top: 48px;
-	padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .smallText {
   color: #6f749a;
-  margin: 0px;
 }
 
 .largeText {
-  margin: 8px 0px;
+  margin: 0;
 }
