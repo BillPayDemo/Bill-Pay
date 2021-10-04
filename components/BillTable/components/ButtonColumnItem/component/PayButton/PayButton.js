@@ -13,23 +13,25 @@ export const PayButton = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button label="Pay" className={s.buttonText} onClick={handleOpen} />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
-      >
-        <Box sx={modalStyling}>
-          <IconButton
-            size="small"
-            onClick={handleClose}
-            style={closeButtonStyling}
-          >
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </Modal>
-    </div>
+    <tr>
+      <td>
+        <Button label="Pay" className={s.buttonText} onClick={handleOpen} />
+        <Modal
+          open={open}
+          onClose={handleClose}
+          BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
+        >
+          <Box sx={modalStyling}>
+            <IconButton
+              size="small"
+              onClick={handleClose}
+              style={closeButtonStyling}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Modal>
+      </td>
+    </tr>
   );
 };

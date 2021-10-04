@@ -10,6 +10,7 @@ import s from "./BillTable.module.css";
 import { Typography } from "@codat/orchard-ui";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
 import moment from "moment";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 export const FormattedColumnHeaderCell = ({ text }) => {
   return (
@@ -45,6 +46,14 @@ export const FormattedCell = ({ text }) => {
       </TableCell>
     </>
   );
+};
+
+const getFormattedAmountDue = (unformattedSymbol, unformattedAmount) => {
+  const formattedSymbol = getSymbolFromCurrency(unformattedSymbol);
+  const formattedAmount = unformattedAmount
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return formattedSymbol.concat(formattedAmount);
 };
 
 export const BillTable = (billData) => {
@@ -86,7 +95,9 @@ export const BillTable = (billData) => {
                 />
                 <FormattedCell text={bill.supplierName} />
                 <FormattedCell text={bill.accountName} />
-                <FormattedCell text={bill.amountDue} />
+                <FormattedCell
+                  text={getFormattedAmountDue(bill.currency, bill.amountDue)}
+                />
                 <TableCell style={{ padding: "12px" }}>
                   <ButtonColumnItem />
                 </TableCell>
