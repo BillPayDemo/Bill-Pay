@@ -8,6 +8,7 @@ import { modalStyling, closeButtonStyling } from "../../Modal.styling";
 import { CloseIcon } from "@codat/orchard-ui";
 import { DotDataPoint } from "../../../../../DotDataPoint/DotDataPoint";
 import { TitleWithSubHeadings } from "../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
+import { getFormattedAmountDue } from "../../../../BillTable.helpers";
 
 export const PayButton = (billData) => {
   const [open, setOpen] = React.useState(false);
@@ -54,7 +55,10 @@ export const PayButton = (billData) => {
                 />
                 <TitleWithSubHeadings
                   upperTitle="Amount Due"
-                  mainTitle={bill.amountDue}
+                  mainTitle={getFormattedAmountDue(
+                    bill.currency,
+                    bill.amountDue
+                  )}
                   mainTitleCustomFontSize="20px"
                 />
               </div>
