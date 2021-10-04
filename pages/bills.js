@@ -39,8 +39,6 @@ export default function Bills() {
       reference: bill.reference ?? null,
     }));
 
-  console.log(listBills);
-
   return (
     <div>
       <CompanyHeader />

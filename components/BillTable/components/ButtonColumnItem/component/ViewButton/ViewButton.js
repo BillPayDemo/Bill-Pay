@@ -8,7 +8,7 @@ import { modalStyling, closeButtonStyling } from "../../Modal.styling";
 import { TitleWithSubHeadings } from "../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
 import Divider from "@mui/material/Divider";
 
-export const ViewButton = ({ args, bill }) => {
+export const ViewButton = ({ args, billData }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -32,12 +32,17 @@ export const ViewButton = ({ args, bill }) => {
             >
               <CloseIcon />
             </IconButton>
-            <TitleWithSubHeadings
-              mainTitle="Invoice"
-              upperTitle={null}
-              lowerTitle={bill.reference ?? bill.id}
-            />
-            <Divider />
+            <div className={s.container}>
+              <div className={s.title}>
+                <TitleWithSubHeadings
+                  mainTitle="Invoice"
+                  upperTitle={null}
+                  lowerTitle={billData.reference ?? billData.id}
+                  mainTitleCustomFontSize="33px"
+                />
+              </div>
+              <Divider className={s.divider} />
+            </div>
           </Box>
         </Modal>
       </td>
