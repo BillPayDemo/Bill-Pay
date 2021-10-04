@@ -12,25 +12,27 @@ export const ViewButton = (args) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <td>
-      <TextLink onClick={handleOpen} className={s.linkText}>
-        View
-      </TextLink>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
-      >
-        <Box sx={modalStyling}>
-          <IconButton
-            size="small"
-            onClick={handleClose}
-            style={closeButtonStyling}
-          >
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </Modal>
-    </td>
+    <tr>
+      <td>
+        <TextLink onClick={handleOpen} className={s.linkText}>
+          View
+        </TextLink>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
+        >
+          <Box sx={modalStyling}>
+            <IconButton
+              size="small"
+              onClick={handleClose}
+              style={closeButtonStyling}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Modal>
+      </td>
+    </tr>
   );
 };
