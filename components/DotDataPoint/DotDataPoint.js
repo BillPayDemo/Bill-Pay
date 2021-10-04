@@ -1,20 +1,12 @@
 import { Typography } from "@codat/orchard-ui";
 import React from "react";
+import s from "./DotDataPoint.module.css";
 
 export const DotDataPoint = ({ leftText, rightText }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div className={s.container}>
       <Typography variant="small">{leftText}</Typography>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "2px",
-        }}
-      >
-        ·
-      </div>
+      <div className={s.dotSeparator}>·</div>
       <Typography variant="small">{rightText}</Typography>
     </div>
   );
