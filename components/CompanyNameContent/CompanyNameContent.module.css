@@ -1,0 +1,13 @@
+.button {
+  font-size: 14px;
+  width: 120px;
+  height: 40px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 14.5px;
+  justify-content: center;
+  align-items: center;
+}
