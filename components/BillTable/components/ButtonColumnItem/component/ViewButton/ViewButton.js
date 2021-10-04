@@ -5,8 +5,10 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { IconButton } from "@mui/material";
 import { modalStyling, closeButtonStyling } from "../../Modal.styling";
+import { TitleWithSubHeadings } from "../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
+import Divider from "@mui/material/Divider";
 
-export const ViewButton = (args) => {
+export const ViewButton = ({ args, bill }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,6 +32,12 @@ export const ViewButton = (args) => {
             >
               <CloseIcon />
             </IconButton>
+            <TitleWithSubHeadings
+              mainTitle="Invoice"
+              upperTitle={null}
+              lowerTitle={bill.reference ?? bill.id}
+            />
+            <Divider />
           </Box>
         </Modal>
       </td>

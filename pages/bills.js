@@ -37,7 +37,10 @@ export default function Bills() {
       currency: bill.currency,
       supplierName: bill.supplierRef.supplierName,
       accountName: bill.lineItems[0].accountRef?.name ?? "",
+      reference: bill.reference ?? null,
     }));
+
+  console.log(listBills);
 
   return (
     <div>
