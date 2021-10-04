@@ -6,11 +6,15 @@ export const DotDataPoint = ({ leftText, rightText }) => {
   const hasRightText = rightText || rightText !== "";
   return (
     <div className={s.container}>
-      <Typography variant="small">{leftText}</Typography>
+      <Typography variant="small" style={{ margin: 0 }}>
+        {leftText}
+      </Typography>
       {hasRightText && (
         <>
           <div className={s.dotSeparator}>·</div>
-          <Typography variant="small">{rightText}</Typography>
+          <Typography variant="small" style={{ margin: 0 }}>
+            {rightText}
+          </Typography>
         </>
       )}
     </div>

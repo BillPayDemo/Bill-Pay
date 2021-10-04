@@ -7,22 +7,38 @@ export const TitleWithSubHeadings = ({
   upperTitle,
   lowerTitle,
   mainTitleCustomFontSize,
+  customPaddingBottom,
 }) => {
   return (
-    <div className={s.container}>
-      <Typography variant="small" className={s.smallText}>
-        {upperTitle}
-      </Typography>
+    <div className={s.container} style={{ paddingBottom: customPaddingBottom }}>
+      {upperTitle && (
+        <Typography
+          variant="small"
+          className={s.smallText}
+          style={{ margin: "0 0 8px 0" }}
+        >
+          {upperTitle}
+        </Typography>
+      )}
       <Typography
         variant="h1"
         className={s.largeText}
-        style={{ fontSize: mainTitleCustomFontSize }}
+        style={{
+          fontSize: mainTitleCustomFontSize,
+          margin: 0,
+        }}
       >
         {mainTitle}
       </Typography>
-      <Typography variant="small" className={s.smallText}>
-        {lowerTitle}
-      </Typography>
+      {lowerTitle && (
+        <Typography
+          variant="small"
+          className={s.smallText}
+          style={{ margin: "8px 0 0 0" }}
+        >
+          {lowerTitle}
+        </Typography>
+      )}
     </div>
   );
 };

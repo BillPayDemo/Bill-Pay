@@ -52,6 +52,8 @@ export const PayButton = (billData) => {
                       rightText={bill.accountName}
                     />
                   }
+                  mainTitleCustomFontSize="26px"
+                  customPaddingBottom="16px"
                 />
                 <TitleWithSubHeadings
                   upperTitle="Amount Due"
@@ -59,7 +61,9 @@ export const PayButton = (billData) => {
                     bill.currency,
                     bill.amountDue
                   )}
+                  lowerTitle={null}
                   mainTitleCustomFontSize="20px"
+                  customPaddingBottom="16px"
                 />
               </div>
             )}
