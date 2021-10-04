@@ -15,7 +15,6 @@ export const PayButton = (billData) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const bill = billData.billData;
-  console.log(billData);
 
   return (
     <tr>
