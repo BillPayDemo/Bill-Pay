@@ -6,9 +6,15 @@ import { ViewButton } from "./component/ViewButton/ViewButton";
 
 export const ButtonColumnItem = ({ text }) => {
   return (
-    <td className={s.buttonsLayout}>
-      <ViewButton />
-      <PayButton />
-    </td>
+    <table className={s.buttonsLayout}>
+      <tbody>
+        <tr>
+          <ViewButton />
+        </tr>
+        <tr>
+          <PayButton />
+        </tr>
+      </tbody>
+    </table>
   );
 };

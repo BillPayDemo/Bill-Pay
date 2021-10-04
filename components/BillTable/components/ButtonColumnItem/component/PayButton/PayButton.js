@@ -13,7 +13,7 @@ export const PayButton = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <td>
       <Button label="Pay" className={s.buttonText} onClick={handleOpen} />
       <Modal
         open={open}
@@ -30,6 +30,6 @@ export const PayButton = () => {
           </IconButton>
         </Box>
       </Modal>
-    </div>
+    </td>
   );
 };

@@ -12,7 +12,7 @@ export const ViewButton = (args) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <td>
       <TextLink onClick={handleOpen} className={s.linkText}>
         View
       </TextLink>
@@ -31,6 +31,6 @@ export const ViewButton = (args) => {
           </IconButton>
         </Box>
       </Modal>
-    </div>
+    </td>
   );
 };
