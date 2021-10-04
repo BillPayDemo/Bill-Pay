@@ -99,7 +99,7 @@ export const BillTable = (billData) => {
                   text={getFormattedAmountDue(bill.currency, bill.amountDue)}
                 />
                 <TableCell style={{ padding: "12px" }}>
-                  <ButtonColumnItem />
+                  <ButtonColumnItem billData={bill} />
                 </TableCell>
               </TableRow>
             ))}

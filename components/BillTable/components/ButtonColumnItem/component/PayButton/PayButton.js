@@ -3,14 +3,18 @@ import { Button } from "@codat/orchard-ui";
 import s from "./PayButton.module.css";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { IconButton } from "@mui/material";
+import { Divider, IconButton } from "@mui/material";
 import { modalStyling, closeButtonStyling } from "../../Modal.styling";
 import { CloseIcon } from "@codat/orchard-ui";
+import { DotDataPoint } from "../../../../../DotDataPoint/DotDataPoint";
+import { TitleWithSubHeadings } from "../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
 
-export const PayButton = () => {
+export const PayButton = (billData) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const bill = billData.billData;
+  console.log(billData);
 
   return (
     <tr>
@@ -29,6 +33,33 @@ export const PayButton = () => {
             >
               <CloseIcon />
             </IconButton>
+            {billData && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                }}
+              >
+                <TitleWithSubHeadings
+                  upperTitle={bill.id}
+                  mainTitle="Bill Payment"
+                  lowerTitle={
+                    <DotDataPoint
+                      leftText={bill.supplierName}
+                      rightText={bill.accountName}
+                    />
+                  }
+                />
+                <TitleWithSubHeadings
+                  upperTitle="Amount Due"
+                  mainTitle={bill.amountDue}
+                  mainTitleCustomFontSize="20px"
+                />
+              </div>
+            )}
+            <Divider />
           </Box>
         </Modal>
       </td>

@@ -4,7 +4,7 @@ import s from "./ButtonColumnItem.module.css";
 import { PayButton } from "./component/PayButton/PayButton";
 import { ViewButton } from "./component/ViewButton/ViewButton";
 
-export const ButtonColumnItem = ({ text }) => {
+export const ButtonColumnItem = ({ billData }) => {
   return (
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
