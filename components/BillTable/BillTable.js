@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import s from "./BillTable.module.css";
 import { Typography } from "@codat/orchard-ui";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
+import moment from "moment";
 
 export const FormattedColumnHeaderCell = ({ text }) => {
   return (
@@ -80,7 +81,9 @@ export const BillTable = (billData) => {
                   },
                 }}
               >
-                <FormattedCell text={bill.issueDate} />
+                <FormattedCell
+                  text={moment(bill.issueDate).format("MMM DD, YYYY")}
+                />
                 <FormattedCell text={bill.supplierName} />
                 <FormattedCell text={bill.accountName} />
                 <FormattedCell text={bill.amountDue} />
