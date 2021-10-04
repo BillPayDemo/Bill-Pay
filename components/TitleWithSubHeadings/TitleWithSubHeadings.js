@@ -2,13 +2,22 @@ import React, { FC } from "react";
 import s from "./TitleWithSubHeadings.module.css";
 import { Typography } from "@codat/orchard-ui";
 
-export const TitleWithSubHeadings = ({ mainTitle, upperTitle, lowerTitle }) => {
+export const TitleWithSubHeadings = ({
+  mainTitle,
+  upperTitle,
+  lowerTitle,
+  mainTitleCustomFontSize,
+}) => {
   return (
     <div className={s.container}>
       <Typography variant="small" className={s.smallText}>
         {upperTitle}
       </Typography>
-      <Typography variant="h1" className={s.largeText}>
+      <Typography
+        variant="h1"
+        className={s.largeText}
+        style={{ fontSize: mainTitleCustomFontSize }}
+      >
         {mainTitle}
       </Typography>
       <Typography variant="small" className={s.smallText}>
