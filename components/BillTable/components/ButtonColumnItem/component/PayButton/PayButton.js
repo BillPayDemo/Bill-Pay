@@ -12,23 +12,27 @@ import { getFormattedAmountDue } from "../../../../BillTable.helpers";
 import { PayModalFields } from "./components/PayModalFields/PayModalFields";
 
 export const PayButton = ({ billData }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [isPayModalOpen, setPayModalOpen] = React.useState(false);
+  const handlePayModalOpen = () => setPayModalOpen(true);
+  const handlePayModalClose = () => setPayModalOpen(false);
 
   return (
     <tr>
       <td>
-        <Button label="Pay" className={s.buttonText} onClick={handleOpen} />
+        <Button
+          label="Pay"
+          className={s.buttonText}
+          onClick={handlePayModalOpen}
+        />
         <Modal
-          open={open}
-          onClose={handleClose}
+          open={isPayModalOpen}
+          onClose={handlePayModalClose}
           BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
         >
           <Box sx={modalStyling}>
             <IconButton
               size="small"
-              onClick={handleClose}
+              onClick={handlePayModalClose}
               style={closeButtonStyling}
             >
               <CloseIcon />
@@ -62,7 +66,7 @@ export const PayButton = ({ billData }) => {
               <Button
                 label="Pay Bill"
                 className={s.payBillButton}
-                onClick={handleClose}
+                onClick={handlePayModalClose}
               />
             </div>
           </Box>
