@@ -7,3 +7,15 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.checkboxRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.checkboxTypography {
+  margin: 4px 8px 4px 8px;
+  display: flex;
+  align-items: center;
+}
