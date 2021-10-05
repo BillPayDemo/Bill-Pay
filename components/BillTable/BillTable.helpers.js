@@ -1,4 +1,6 @@
 import getSymbolFromCurrency from "currency-symbol-map";
+import { Typography } from "@codat/orchard-ui";
+import TableCell from "@mui/material/TableCell";
 
 export const getFormattedAmountDue = (unformattedSymbol, unformattedAmount) => {
   const formattedSymbol = getSymbolFromCurrency(unformattedSymbol);
@@ -7,4 +9,28 @@ export const getFormattedAmountDue = (unformattedSymbol, unformattedAmount) => {
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return formattedSymbol.concat(formattedAmount);
+};
+
+export const FormattedCell = ({
+  text,
+  colour = "#6F749A",
+  fontSize = "",
+  align = "left",
+}) => {
+  return (
+    <>
+      <TableCell align={align}>
+        <Typography
+          style={{
+            margin: 0,
+            color: colour,
+            fontSize: fontSize,
+          }}
+          variant="small"
+        >
+          {text}
+        </Typography>
+      </TableCell>
+    </>
+  );
 };
