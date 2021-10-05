@@ -58,6 +58,13 @@ export const PayButton = ({ billData }) => {
             )}
             <Divider />
             <PayModalFields />
+            <div className={s.payBillButtonContainer}>
+              <Button
+                label="Pay Bill"
+                className={s.payBillButton}
+                onClick={handleClose}
+              />
+            </div>
           </Box>
         </Modal>
       </td>

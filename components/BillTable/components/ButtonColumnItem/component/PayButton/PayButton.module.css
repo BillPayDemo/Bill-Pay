@@ -10,3 +10,13 @@
   padding-top: 20px;
   padding-bottom: 16px;
 }
+
+.payBillButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.payBillButton {
+  font-size: 14px;
+}
