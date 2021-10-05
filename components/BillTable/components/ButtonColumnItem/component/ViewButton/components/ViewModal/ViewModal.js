@@ -28,7 +28,6 @@ export const ViewModal = ({ isViewModalOpen, handleClose, billData }) => {
           <div className={s.title}>
             <TitleWithSubHeadings
               mainTitle="Invoice"
-              upperTitle={null}
               lowerTitle={billData.reference ?? billData.id}
               mainTitleCustomFontSize="33px"
             />
