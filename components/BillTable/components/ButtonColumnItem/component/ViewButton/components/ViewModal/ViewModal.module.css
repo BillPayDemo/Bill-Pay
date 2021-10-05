@@ -1,0 +1,22 @@
+.title {
+  margin-top: 28px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+}
+
+.topSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.buttonText {
+  font-size: 12px;
+}
+
+.button {
+  margin-bottom: 30px;
+  margin-top: 42px;
+  margin-right: 16px;
+}
