@@ -1,4 +1,4 @@
-import { TextLink, CloseIcon } from "@codat/orchard-ui";
+import { TextLink, CloseIcon, Button } from "@codat/orchard-ui";
 import React from "react";
 import s from "./ViewButton.module.css";
 import Box from "@mui/material/Box";
@@ -32,7 +32,7 @@ export const ViewButton = ({ args, billData }) => {
             >
               <CloseIcon />
             </IconButton>
-            <div className={s.container}>
+            <div className={s.topSection}>
               <div className={s.title}>
                 <TitleWithSubHeadings
                   mainTitle="Invoice"
@@ -41,8 +41,15 @@ export const ViewButton = ({ args, billData }) => {
                   mainTitleCustomFontSize="33px"
                 />
               </div>
-              <Divider />
+              <div className={s.button}>
+                <Button
+                  label="Pay Bill"
+                  className={s.buttonText}
+                  onClick={null}
+                />
+              </div>
             </div>
+            <Divider />
           </Box>
         </Modal>
       </td>
