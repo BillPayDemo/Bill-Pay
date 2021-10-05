@@ -39,6 +39,7 @@ export const ViewModal = ({ open, handleClose, billData }) => {
         </div>
         <Divider />
         <InformationPanel billData={billData} />
+        <Divider />
       </Box>
     </Modal>
   );
