@@ -8,6 +8,7 @@ import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/
 import Divider from "@mui/material/Divider";
 import { InformationPanel } from "../../components/InformationPanel/InformationPanel";
 import { CloseIcon, Button } from "@codat/orchard-ui";
+import { BillItemInformationTable } from "../BillItemInformationTable/BillItemInformationTable";
 
 export const ViewModal = ({ isViewModalOpen, handleClose, billData }) => {
   return (
@@ -38,6 +39,11 @@ export const ViewModal = ({ isViewModalOpen, handleClose, billData }) => {
         </div>
         <Divider />
         <InformationPanel billData={billData} />
+        <Divider />
+        <BillItemInformationTable
+          billLineItems={billData.lineItems}
+          currency={billData.currency}
+        />
         <Divider />
       </Box>
     </Modal>

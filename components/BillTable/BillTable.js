@@ -7,46 +7,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import s from "./BillTable.module.css";
-import { Typography } from "@codat/orchard-ui";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
 import moment from "moment";
-import { getFormattedAmountDue } from "./BillTable.helpers";
-
-export const FormattedColumnHeaderCell = ({ text }) => {
-  return (
-    <>
-      <TableCell align="left">
-        <Typography
-          style={{
-            color: "#5f6374",
-            margin: 0,
-            fontSize: "14px",
-          }}
-          variant="small"
-        >
-          {text}
-        </Typography>
-      </TableCell>
-    </>
-  );
-};
-
-export const FormattedCell = ({ text }) => {
-  return (
-    <>
-      <TableCell align="left" style={{ padding: "18px" }}>
-        <Typography
-          style={{
-            margin: 0,
-          }}
-          variant="small"
-        >
-          {text}
-        </Typography>
-      </TableCell>
-    </>
-  );
-};
+import { getFormattedAmountDue, FormattedCell } from "./BillTable.helpers";
 
 export const BillTable = (billData) => {
   return (
@@ -64,11 +27,11 @@ export const BillTable = (billData) => {
       >
         <TableHead>
           <TableRow>
-            <FormattedColumnHeaderCell text="Date" />
-            <FormattedColumnHeaderCell text="Supplier" />
-            <FormattedColumnHeaderCell text="Reference" />
-            <FormattedColumnHeaderCell text="Amount Due" />
-            <FormattedColumnHeaderCell text="" />
+            <FormattedCell text="Date" colour="#5f6374" fontSize="14px" />
+            <FormattedCell text="Supplier" colour="#5f6374" fontSize="14px" />
+            <FormattedCell text="Reference" colour="#5f6374" fontSize="14px" />
+            <FormattedCell text="Amount Due" colour="#5f6374" fontSize="14px" />
+            <FormattedCell text="" />
           </TableRow>
         </TableHead>
         <TableBody>

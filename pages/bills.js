@@ -38,6 +38,7 @@ export default function Bills() {
       accountName: bill.lineItems[0].accountRef?.name ?? "",
       reference: bill.reference ?? null,
       dueDate: bill.dueDate,
+      lineItems: bill.lineItems,
     }));
 
   return (
