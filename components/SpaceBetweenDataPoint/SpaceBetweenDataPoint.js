@@ -9,6 +9,7 @@ export const SpaceBetweenDataPoint = ({ label, value }) => {
         style={{
           color: "#6F749A",
           margin: "0 2px 0 0",
+          fontSize: "12px",
         }}
         variant="p"
       >
@@ -18,6 +19,7 @@ export const SpaceBetweenDataPoint = ({ label, value }) => {
         style={{
           color: "#29262B",
           margin: "0 0 0 2px",
+          fontSize: "12px",
         }}
         variant="p"
       >
