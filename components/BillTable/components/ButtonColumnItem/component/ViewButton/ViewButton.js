@@ -41,7 +41,7 @@ export const ViewButton = ({ args, billData }) => {
                   mainTitleCustomFontSize="33px"
                 />
               </div>
-              <Divider className={s.divider} />
+              <Divider />
             </div>
           </Box>
         </Modal>
