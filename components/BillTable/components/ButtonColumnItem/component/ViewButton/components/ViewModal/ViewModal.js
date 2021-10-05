@@ -9,10 +9,10 @@ import Divider from "@mui/material/Divider";
 import { InformationPanel } from "../../components/InformationPanel/InformationPanel";
 import { CloseIcon, Button } from "@codat/orchard-ui";
 
-export const ViewModal = ({ open, handleClose, billData }) => {
+export const ViewModal = ({ isViewModalOpen, handleClose, billData }) => {
   return (
     <Modal
-      open={open}
+      open={isViewModalOpen}
       onClose={handleClose}
       BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
     >

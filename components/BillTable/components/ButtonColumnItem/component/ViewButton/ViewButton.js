@@ -4,9 +4,9 @@ import s from "./ViewButton.module.css";
 import { ViewModal } from "./components/ViewModal/ViewModal";
 
 export const ViewButton = ({ args, billData }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [isViewModalOpen, setViewModalOpen] = React.useState(false);
+  const handleOpen = () => setViewModalOpen(true);
+  const handleClose = () => setViewModalOpen(false);
 
   return (
     <tr>
@@ -14,7 +14,11 @@ export const ViewButton = ({ args, billData }) => {
         <TextLink onClick={handleOpen} className={s.linkText}>
           View
         </TextLink>
-        <ViewModal open={open} billData={billData} handleClose={handleClose} />
+        <ViewModal
+          isViewModalOpen={isViewModalOpen}
+          billData={billData}
+          handleClose={handleClose}
+        />
       </td>
     </tr>
   );
