@@ -1,0 +1,19 @@
+.topSectionContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 20px;
+  padding-bottom: 16px;
+}
+
+.payBillButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.payBillButton {
+  font-size: 14px;
+}
