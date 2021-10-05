@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 32px 16px 32px 16px;
+  text-align: right;
+}
+
+.subSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  width: 42%;
+}
+
+.divider {
+  align-self: stretch;
+  height: auto;
+}
