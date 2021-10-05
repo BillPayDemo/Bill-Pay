@@ -11,9 +11,15 @@ import {
   FormattedCell,
 } from "../../../../../../BillTable.helpers.js";
 
-const ItemFormattedCell = ({ text, align = "left" }) => {
+const ItemFormattedCell = ({ text, align = "left", paddingLeft = "16px" }) => {
   return (
-    <FormattedCell text={text} colour="#29262B" fontSize="14px" align={align} />
+    <FormattedCell
+      text={text}
+      colour="#29262B"
+      fontSize="14px"
+      align={align}
+      paddingLeft={paddingLeft}
+    />
   );
 };
 
@@ -30,9 +36,9 @@ export const BillItemInformationTable = ({ billLineItems, currency }) => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <FormattedCell text="Account Name" />
-            <FormattedCell text="Description" />
-            <FormattedCell text="Unit Cost" align="right" />
+            <FormattedCell text="Account Name" width="25%" />
+            <FormattedCell text="Description" width="25%" />
+            <FormattedCell text="Unit Cost" paddingLeft="8%" width="20%" />
             <FormattedCell text="Quantity" align="right" />
             <FormattedCell text="" />
           </TableRow>
@@ -54,7 +60,7 @@ export const BillItemInformationTable = ({ billLineItems, currency }) => {
                   text={
                     getFormattedAmountDue(currency, lineItem.unitAmount) ?? ""
                   }
-                  align="right"
+                  paddingLeft="8%"
                 />
                 <ItemFormattedCell
                   text={lineItem.quantity ?? ""}

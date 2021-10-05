@@ -16,10 +16,16 @@ export const FormattedCell = ({
   colour = "#6F749A",
   fontSize = "",
   align = "left",
+  width = "",
+  paddingLeft = "16px",
 }) => {
   return (
     <>
-      <TableCell align={align}>
+      <TableCell
+        align={align}
+        width={width}
+        style={{ paddingLeft: paddingLeft }}
+      >
         <Typography
           style={{
             margin: 0,
