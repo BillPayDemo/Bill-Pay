@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput } from "@codat/orchard-ui";
+import { Checkbox, TextInput, Typography } from "@codat/orchard-ui";
 import s from "./PayModalFields.module.css";
 import { CardIcon } from "../../../../../../../CardIcon/CardIcon";
 
@@ -8,6 +8,8 @@ export const PayModalFields = () => {
   const [expiryDateValue, setExpiryDateValue] = React.useState("");
   const [cvcValue, setCvcValue] = React.useState("");
   const [postcodeValue, setPostcodeValue] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
+  const handleCheckboxClick = (event) => setChecked(event.target.checked);
 
   return (
     <div className={s.topContainer}>
@@ -41,6 +43,16 @@ export const PayModalFields = () => {
           value={postcodeValue}
           onChange={(event) => setPostcodeValue(event.target.value)}
         />
+      </div>
+      <div className={s.checkboxRow}>
+        <Checkbox
+          id="checkbox"
+          onChange={handleCheckboxClick}
+          checked={checked}
+        />
+        <Typography variant="p" className={s.checkboxTypography}>
+          Save card for future payments
+        </Typography>
       </div>
     </div>
   );
