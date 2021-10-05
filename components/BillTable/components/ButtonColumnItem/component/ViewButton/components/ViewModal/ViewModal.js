@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import { InformationPanel } from "../../components/InformationPanel/InformationPanel";
 import { CloseIcon, Button } from "@codat/orchard-ui";
 import { BillItemInformationTable } from "../BillItemInformationTable/BillItemInformationTable";
+import { TotalBreakDownTable } from "../TotalBreakdownTable/TotalBreakdownTable";
 
 export const ViewModal = ({ isViewModalOpen, handleClose, billData }) => {
   return (
@@ -45,6 +46,7 @@ export const ViewModal = ({ isViewModalOpen, handleClose, billData }) => {
           currency={billData.currency}
         />
         <Divider />
+        <TotalBreakDownTable billData={billData} />
       </Box>
     </Modal>
   );
