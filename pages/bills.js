@@ -30,8 +30,8 @@ export default function Bills() {
     dataBills.map((bill) => ({
       id: bill.id,
       status: bill.status,
-      totalAmount: bill.totalAmount.toFixed(2),
-      amountDue: bill.amountDue.toFixed(2),
+      totalAmount: bill.totalAmount,
+      amountDue: bill.amountDue,
       issueDate: bill.issueDate,
       currency: bill.currency,
       supplierName: bill.supplierRef.supplierName,
