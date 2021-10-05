@@ -1,0 +1,9 @@
+.topContainer {
+  margin-top: 32px;
+}
+
+.inlineFields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

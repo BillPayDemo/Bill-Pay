@@ -9,6 +9,7 @@ import { CloseIcon } from "@codat/orchard-ui";
 import { DotDataPoint } from "../../../../../DotDataPoint/DotDataPoint";
 import { TitleWithSubHeadings } from "../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
 import { getFormattedAmountDue } from "../../../../BillTable.helpers";
+import { PayModalFields } from "./components/PayModalFields/PayModalFields";
 
 export const PayButton = ({ billData }) => {
   const [open, setOpen] = React.useState(false);
@@ -56,6 +57,7 @@ export const PayButton = ({ billData }) => {
               </div>
             )}
             <Divider />
+            <PayModalFields />
           </Box>
         </Modal>
       </td>
