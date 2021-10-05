@@ -38,7 +38,7 @@ export const BillItemInformationTable = ({ billLineItems, currency }) => {
           <TableRow>
             <FormattedCell text="Account Name" width="25%" />
             <FormattedCell text="Description" width="25%" />
-            <FormattedCell text="Unit Cost" paddingLeft="8%" width="25%" />
+            <FormattedCell text="Unit Cost" paddingLeft="8%" width="20%" />
             <FormattedCell text="Quantity" align="right" />
             <FormattedCell text="" />
           </TableRow>
