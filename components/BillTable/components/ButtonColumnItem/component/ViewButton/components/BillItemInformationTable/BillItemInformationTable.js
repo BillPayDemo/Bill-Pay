@@ -7,18 +7,18 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
-  getFormattedAmountDue,
+  getFormattedAmount,
   FormattedCell,
 } from "../../../../../../BillTable.helpers.js";
 
-const ItemFormattedCell = ({ text, align = "left", paddingLeft = "16px" }) => {
+const ItemFormattedCell = ({ text, align = "left", padding = "16px" }) => {
   return (
     <FormattedCell
       text={text}
       colour="#29262B"
       fontSize="14px"
       align={align}
-      paddingLeft={paddingLeft}
+      padding={padding}
     />
   );
 };
@@ -38,7 +38,11 @@ export const BillItemInformationTable = ({ billLineItems, currency }) => {
           <TableRow>
             <FormattedCell text="Account Name" width="25%" />
             <FormattedCell text="Description" width="25%" />
-            <FormattedCell text="Unit Cost" paddingLeft="8%" width="20%" />
+            <FormattedCell
+              text="Unit Cost"
+              padding="16px 16px 16px 8%"
+              width="20%"
+            />
             <FormattedCell text="Quantity" align="right" />
             <FormattedCell text="" />
           </TableRow>
@@ -57,19 +61,15 @@ export const BillItemInformationTable = ({ billLineItems, currency }) => {
                 <ItemFormattedCell text={lineItem.accountRef?.name ?? ""} />
                 <ItemFormattedCell text={lineItem.description ?? ""} />
                 <ItemFormattedCell
-                  text={
-                    getFormattedAmountDue(currency, lineItem.unitAmount) ?? ""
-                  }
-                  paddingLeft="8%"
+                  text={getFormattedAmount(currency, lineItem.unitAmount) ?? ""}
+                  padding="16px 16px 16px 8%"
                 />
                 <ItemFormattedCell
                   text={lineItem.quantity ?? ""}
                   align="right"
                 />
                 <ItemFormattedCell
-                  text={
-                    getFormattedAmountDue(currency, lineItem.subTotal) ?? ""
-                  }
+                  text={getFormattedAmount(currency, lineItem.subTotal) ?? ""}
                   align="right"
                 />
               </TableRow>

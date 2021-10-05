@@ -2,7 +2,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import { Typography } from "@codat/orchard-ui";
 import TableCell from "@mui/material/TableCell";
 
-export const getFormattedAmountDue = (unformattedSymbol, unformattedAmount) => {
+export const getFormattedAmount = (unformattedSymbol, unformattedAmount) => {
   const formattedSymbol = getSymbolFromCurrency(unformattedSymbol);
   const formattedAmount = unformattedAmount
     .toFixed(2)
@@ -17,20 +17,18 @@ export const FormattedCell = ({
   fontSize = "",
   align = "left",
   width = "",
-  paddingLeft = "16px",
+  padding = "16px",
+  fontWeight = "",
 }) => {
   return (
     <>
-      <TableCell
-        align={align}
-        width={width}
-        style={{ paddingLeft: paddingLeft }}
-      >
+      <TableCell align={align} width={width} style={{ padding: padding }}>
         <Typography
           style={{
             margin: 0,
             color: colour,
             fontSize: fontSize,
+            fontWeight: fontWeight,
           }}
           variant="small"
         >

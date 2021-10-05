@@ -6,15 +6,42 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
-  getFormattedAmountDue,
+  getFormattedAmount,
   FormattedCell,
 } from "../../../../../../BillTable.helpers.js";
 
+const TotalCellFormatted = ({ text, fontWeight }) => {
+  return (
+    <FormattedCell
+      text={text}
+      width="25%"
+      colour="#29262B"
+      fontSize="14px"
+      align="right"
+      padding="8px 16px 8px 16px"
+      fontWeight={fontWeight}
+    />
+  );
+};
+
 const BillTotalTableRow = ({ billData }) => {
   const totalInformation = [
-    { label: "Subtotal", value: billData.subTotal, id: 1 },
-    { label: "Total Tax", value: billData.taxAmount, id: 2 },
-    { label: "Total", value: billData.totalAmount, id: 3 },
+    {
+      label: "Subtotal",
+      value: getFormattedAmount(billData.currency, billData.subTotal),
+      id: 1,
+    },
+    {
+      label: "Total Tax",
+      value: getFormattedAmount(billData.currency, billData.taxAmount),
+      id: 2,
+    },
+    {
+      label: "Total",
+      value: getFormattedAmount(billData.currency, billData.totalAmount),
+      id: 3,
+      fontWeight: "700",
+    },
   ];
   return (
     <TableBody>
@@ -28,8 +55,14 @@ const BillTotalTableRow = ({ billData }) => {
             }}
             key={item.id}
           >
-            <FormattedCell text={item.label ?? ""} width="25%" />
-            <FormattedCell text={item.value ?? ""} width="25%" />
+            <TotalCellFormatted
+              text={item.label ?? ""}
+              fontWeight={item.fontWeight ?? ""}
+            />
+            <TotalCellFormatted
+              text={item.value ?? ""}
+              fontWeight={item.fontWeight ?? ""}
+            />
           </TableRow>
         ))}
     </TableBody>
