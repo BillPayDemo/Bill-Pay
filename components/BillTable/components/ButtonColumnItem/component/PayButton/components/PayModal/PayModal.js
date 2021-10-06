@@ -12,6 +12,7 @@ import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
 import { useSWRConfig } from "swr";
+import axios from "axios";
 
 export const PayModal = ({
   isPayModalOpen,
