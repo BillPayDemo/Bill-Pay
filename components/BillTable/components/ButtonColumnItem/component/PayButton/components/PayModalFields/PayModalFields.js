@@ -8,7 +8,7 @@ import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 import FormControl from "@mui/material/FormControl";
 
-export const PayModalFields = () => {
+export const PayModalFields = ({ accountData }) => {
   const [cardNumberValue, setCardNumberValue] = React.useState("");
   const [expiryDateValue, setExpiryDateValue] = React.useState("");
   const [cvcValue, setCvcValue] = React.useState("");
