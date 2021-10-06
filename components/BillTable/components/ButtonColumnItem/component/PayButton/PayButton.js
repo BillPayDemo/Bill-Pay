@@ -6,14 +6,14 @@ import { useContext } from "react";
 export const variableText = false;
 
 export const PayButton = ({ billData }) => {
-  const { onPayModelOpen } = useContext(BillModalContext);
+  const { onPayModalOpen } = useContext(BillModalContext);
   return (
     <tr>
       <td>
         <Button
           label="Pay"
           className={s.buttonText}
-          onClick={() => onPayModelOpen(billData.id)}
+          onClick={() => onPayModalOpen(billData.id)}
         />
       </td>
     </tr>

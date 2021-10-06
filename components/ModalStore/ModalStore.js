@@ -10,7 +10,7 @@ export const BillModalContext = React.createContext({
   onViewModalClose: () => undefined,
   onViewModalOpen: () => undefined,
   onPayModalClose: () => undefined,
-  onPayModelOpen: () => undefined,
+  onPayModalOpen: () => undefined,
   onViewModalClosePayButtonOpen: () => undefined,
   modalState: initialBillModalState,
 });
@@ -31,7 +31,7 @@ export const ModalStore = ({ children }) => {
   const onPayModalClose = () => {
     setState({ ...initialBillModalState, isPayModalOpen: false });
   };
-  const onPayModelOpen = (id) => {
+  const onPayModalOpen = (id) => {
     setState({
       ...initialBillModalState,
       isPayModalOpen: true,
@@ -51,7 +51,7 @@ export const ModalStore = ({ children }) => {
     onViewModalClose,
     onViewModalOpen,
     onPayModalClose,
-    onPayModelOpen,
+    onPayModalOpen,
     onViewModalClosePayButtonOpen,
   };
 
