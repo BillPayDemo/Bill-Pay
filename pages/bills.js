@@ -19,7 +19,6 @@ export default function Bills() {
     "/api/accounts",
     fetcher
   );
-  console.log(dataAccounts);
 
   const handlePayClick = (id) => {
     axios.put("/api/bills", { id: id });
@@ -53,7 +52,6 @@ export default function Bills() {
       isBankAccount: account.isBankAccount,
       accountName: account.name,
     }));
-  console.log(accounts);
 
   return (
     <div>
