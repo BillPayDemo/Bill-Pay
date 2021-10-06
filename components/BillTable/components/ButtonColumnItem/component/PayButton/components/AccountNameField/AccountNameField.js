@@ -18,7 +18,8 @@ export const AccountNameField = ({ billData, accountData }) => {
     );
   };
 
-  const accountsFiltered = accountData.filter(accountsFilteringConditions);
+  const accountsFiltered =
+    accountData && accountData.filter(accountsFilteringConditions);
 
   return (
     <FormControl sx={{ width: "100%" }} variant="outlined">
