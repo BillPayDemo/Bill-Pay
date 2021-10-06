@@ -71,7 +71,7 @@ export default function Bills() {
           </div>
         )}
         <Divider />
-        <BillTable billData={listBills} account />
+        <BillTable billData={listBills} accountData={accounts} />
         <Footer />
       </div>
     </div>
