@@ -55,7 +55,7 @@ export const PayModal = ({
           </div>
         )}
         <Divider />
-        <PayModalFields accountData={accountData} />
+        <PayModalFields billData={billData} accountData={accountData} />
         <div className={s.payBillButtonContainer}>
           <Button
             label="Pay Bill"
