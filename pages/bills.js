@@ -39,6 +39,8 @@ export default function Bills() {
       reference: bill.reference ?? null,
       dueDate: bill.dueDate,
       lineItems: bill.lineItems,
+      subTotal: bill.subTotal,
+      taxAmount: bill.taxAmount,
     }));
 
   return (

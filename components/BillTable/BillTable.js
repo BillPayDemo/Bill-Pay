@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import s from "./BillTable.module.css";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
 import moment from "moment";
-import { getFormattedAmountDue, FormattedCell } from "./BillTable.helpers";
+import { getFormattedAmount, FormattedCell } from "./BillTable.helpers";
 
 export const BillTable = (billData) => {
   return (
@@ -51,7 +51,7 @@ export const BillTable = (billData) => {
                 <FormattedCell text={bill.supplierName} />
                 <FormattedCell text={bill.accountName} />
                 <FormattedCell
-                  text={getFormattedAmountDue(bill.currency, bill.amountDue)}
+                  text={getFormattedAmount(bill.currency, bill.amountDue)}
                 />
                 <TableCell style={{ padding: "12px" }}>
                   <ButtonColumnItem billData={bill} />

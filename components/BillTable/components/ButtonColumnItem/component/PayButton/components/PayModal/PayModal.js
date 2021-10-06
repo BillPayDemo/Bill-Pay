@@ -8,7 +8,7 @@ import { modalStyling, closeButtonStyling } from "../../../../Modal.styling";
 import { CloseIcon } from "@codat/orchard-ui";
 import { DotDataPoint } from "../../../../../../../DotDataPoint/DotDataPoint";
 import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
-import { getFormattedAmountDue } from "../../../../../../BillTable.helpers";
+import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 
 export const PayModal = ({ isPayModalOpen, handlePayModalClose, billData }) => {
@@ -41,7 +41,7 @@ export const PayModal = ({ isPayModalOpen, handlePayModalClose, billData }) => {
             />
             <TitleWithSubHeadings
               upperTitle="Amount Due"
-              mainTitle={getFormattedAmountDue(
+              mainTitle={getFormattedAmount(
                 billData.currency,
                 billData.amountDue
               )}
