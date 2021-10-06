@@ -40,6 +40,13 @@ export const PayModalFields = ({ accountData }) => {
       },
     },
   }));
+  const accountsFilteringConditions = (account) => {
+    return account.isBankAccount === true;
+  };
+
+  const accountsFiltered = accountData.filter(accountsFilteringConditions);
+  console.log("all", accountData);
+  console.log("filtered", accountsFiltered);
 
   return (
     <div className={s.topContainer}>
@@ -72,6 +79,9 @@ export const PayModalFields = ({ accountData }) => {
           >
             Account
           </MenuItem>
+          {accountsFiltered.map((account) => (
+            <MenuItem key={account}>{account.accountName}</MenuItem>
+          ))}
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
