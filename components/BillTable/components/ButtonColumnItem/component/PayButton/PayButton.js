@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "@codat/orchard-ui";
 import s from "./PayButton.module.css";
-import { PayModal } from "./components/PayModal/PayModal";
+import { BillModalContext } from "../../../../../ModalStore/ModalStore";
+import { useContext } from "react";
+export const variableText = false;
 
 export const PayButton = ({ billData }) => {
-  const [isPayModalOpen, setPayModalOpen] = React.useState(false);
-  const handlePayModalOpen = () => setPayModalOpen(true);
-  const handlePayModalClose = () => setPayModalOpen(false);
+  const { onPayModelOpen } = useContext(BillModalContext);
 
   return (
     <tr>
@@ -14,12 +14,7 @@ export const PayButton = ({ billData }) => {
         <Button
           label="Pay"
           className={s.buttonText}
-          onClick={handlePayModalOpen}
-        />
-        <PayModal
-          isPayModalOpen={isPayModalOpen}
-          handlePayModalClose={handlePayModalClose}
-          billData={billData}
+          onClick={() => onPayModelOpen(billData.id)}
         />
       </td>
     </tr>

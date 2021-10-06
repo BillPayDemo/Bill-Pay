@@ -10,56 +10,86 @@ import s from "./BillTable.module.css";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
 import moment from "moment";
 import { getFormattedAmount, FormattedCell } from "./BillTable.helpers";
+import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/components/ViewModal/ViewModal";
+import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
+import { useContext } from "react";
+import { BillModalContext } from "../ModalStore/ModalStore";
 
-export const BillTable = (billData) => {
+export const BillTable = ({ billData }) => {
+  const { state, onViewModalClose, onPayModelClose } =
+    useContext(BillModalContext);
   return (
-    <TableContainer
-      components={{
-        Container: function removeShadowAroundTable(props) {
-          return <Paper {...props} elevation={0} />;
-        },
-      }}
-      className={s.table}
-    >
-      <Table
-        sx={{ minWidth: 650, tableLayout: "fixed" }}
-        aria-label="simple table"
+    <>
+      {billData && (
+        <>
+          <ViewModal
+            isViewModalOpen={state.isViewModalOpen}
+            handleViewModalClose={onViewModalClose}
+            billData={billData}
+          />
+          <PayModal
+            isPayModalOpen={state.isPayModalOpen}
+            handlePayModalClose={onPayModelClose}
+            billData={billData}
+          />
+        </>
+      )}
+      <TableContainer
+        components={{
+          Container: function removeShadowAroundTable(props) {
+            return <Paper {...props} elevation={0} />;
+          },
+        }}
+        className={s.table}
       >
-        <TableHead>
-          <TableRow>
-            <FormattedCell text="Date" colour="#5f6374" fontSize="14px" />
-            <FormattedCell text="Supplier" colour="#5f6374" fontSize="14px" />
-            <FormattedCell text="Reference" colour="#5f6374" fontSize="14px" />
-            <FormattedCell text="Amount Due" colour="#5f6374" fontSize="14px" />
-            <FormattedCell text="" />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {billData.billData &&
-            billData.billData.map((bill) => (
-              <TableRow
-                key={bill.id}
-                sx={{
-                  "&:last-child td, &:last-child th": {
-                    border: 0,
-                  },
-                }}
-              >
-                <FormattedCell
-                  text={moment(bill.issueDate).format("MMM DD, YYYY")}
-                />
-                <FormattedCell text={bill.supplierName} />
-                <FormattedCell text={bill.accountName} />
-                <FormattedCell
-                  text={getFormattedAmount(bill.currency, bill.amountDue)}
-                />
-                <TableCell style={{ padding: "12px" }}>
-                  <ButtonColumnItem billData={bill} />
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <Table
+          sx={{ minWidth: 650, tableLayout: "fixed" }}
+          aria-label="simple table"
+        >
+          <TableHead>
+            <TableRow>
+              <FormattedCell text="Date" colour="#5f6374" fontSize="14px" />
+              <FormattedCell text="Supplier" colour="#5f6374" fontSize="14px" />
+              <FormattedCell
+                text="Reference"
+                colour="#5f6374"
+                fontSize="14px"
+              />
+              <FormattedCell
+                text="Amount Due"
+                colour="#5f6374"
+                fontSize="14px"
+              />
+              <FormattedCell text="" />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {billData &&
+              billData.map((bill) => (
+                <TableRow
+                  key={bill.id}
+                  sx={{
+                    "&:last-child td, &:last-child th": {
+                      border: 0,
+                    },
+                  }}
+                >
+                  <FormattedCell
+                    text={moment(bill.issueDate).format("MMM DD, YYYY")}
+                  />
+                  <FormattedCell text={bill.supplierName} />
+                  <FormattedCell text={bill.accountName} />
+                  <FormattedCell
+                    text={getFormattedAmount(bill.currency, bill.amountDue)}
+                  />
+                  <TableCell style={{ padding: "12px" }}>
+                    <ButtonColumnItem billData={bill} />
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
