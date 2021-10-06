@@ -19,7 +19,7 @@ export const PayModalFields = ({ billData, accountData }) => {
       </Typography>
       <AccountNameField billData={billData} accountData={accountData} />
       <Typography variant="small" className={s.helperText}>
-        Choose your account to make your payment from
+        Choose an account to make your payment from
       </Typography>
       <TextInput
         id="card-number"
