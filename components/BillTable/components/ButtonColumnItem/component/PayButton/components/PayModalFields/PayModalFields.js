@@ -71,16 +71,10 @@ export const PayModalFields = ({ accountData }) => {
             return value;
           }}
         >
-          <MenuItem
-            disabled
-            value=""
-            style={{ color: "rgba(111, 116, 155, 1)" }}
-            selected
-          >
-            Account
-          </MenuItem>
           {accountsFiltered.map((account) => (
-            <MenuItem key={account}>{account.accountName}</MenuItem>
+            <MenuItem key={account.accountName} value={account.accountName}>
+              {account.accountName}
+            </MenuItem>
           ))}
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
