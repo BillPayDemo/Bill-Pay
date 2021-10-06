@@ -11,7 +11,12 @@ import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/
 import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 
-export const PayModal = ({ isPayModalOpen, handlePayModalClose, billData }) => {
+export const PayModal = ({
+  isPayModalOpen,
+  handlePayModalClose,
+  billData,
+  accountData,
+}) => {
   return (
     <Modal
       open={isPayModalOpen}
@@ -50,7 +55,7 @@ export const PayModal = ({ isPayModalOpen, handlePayModalClose, billData }) => {
           </div>
         )}
         <Divider />
-        <PayModalFields />
+        <PayModalFields billData={billData} accountData={accountData} />
         <div className={s.payBillButtonContainer}>
           <Button
             label="Pay Bill"

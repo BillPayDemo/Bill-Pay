@@ -3,7 +3,7 @@ import { Button } from "@codat/orchard-ui";
 import s from "./PayButton.module.css";
 import { PayModal } from "./components/PayModal/PayModal";
 
-export const PayButton = ({ billData }) => {
+export const PayButton = ({ billData, accountData }) => {
   const [isPayModalOpen, setPayModalOpen] = React.useState(false);
   const handlePayModalOpen = () => setPayModalOpen(true);
   const handlePayModalClose = () => setPayModalOpen(false);
@@ -20,6 +20,7 @@ export const PayButton = ({ billData }) => {
           isPayModalOpen={isPayModalOpen}
           handlePayModalClose={handlePayModalClose}
           billData={billData}
+          accountData={accountData}
         />
       </td>
     </tr>

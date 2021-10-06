@@ -4,12 +4,12 @@ import s from "./ButtonColumnItem.module.css";
 import { PayButton } from "./component/PayButton/PayButton";
 import { ViewButton } from "./component/ViewButton/ViewButton";
 
-export const ButtonColumnItem = ({ billData }) => {
+export const ButtonColumnItem = ({ billData, accountData }) => {
   return (
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
         <ViewButton billData={billData} />
-        <PayButton billData={billData} />
+        <PayButton billData={billData} accountData={accountData} />
       </tbody>
     </table>
   );

@@ -2,8 +2,9 @@ import React from "react";
 import { Checkbox, TextInput, Typography } from "@codat/orchard-ui";
 import s from "./PayModalFields.module.css";
 import { CardIcon } from "../../../../../../../CardIcon/CardIcon";
+import { AccountNameField } from "../AccountNameField/AccountNameField";
 
-export const PayModalFields = () => {
+export const PayModalFields = ({ billData, accountData }) => {
   const [cardNumberValue, setCardNumberValue] = React.useState("");
   const [expiryDateValue, setExpiryDateValue] = React.useState("");
   const [cvcValue, setCvcValue] = React.useState("");
@@ -13,6 +14,13 @@ export const PayModalFields = () => {
 
   return (
     <div className={s.topContainer}>
+      <Typography variant="small" className={s.text14px}>
+        Account name
+      </Typography>
+      <AccountNameField billData={billData} accountData={accountData} />
+      <Typography variant="small" className={s.helperText}>
+        Choose your account to make your payment from
+      </Typography>
       <TextInput
         id="card-number"
         label="Card number"

@@ -15,6 +15,10 @@ export default function Bills() {
     "/api/companyInfo",
     fetcher
   );
+  const { data: dataAccounts, error: errorAccounts } = useSWR(
+    "/api/accounts",
+    fetcher
+  );
 
   const handlePayClick = (id) => {
     axios.put("/api/bills", { id: id });
@@ -43,6 +47,14 @@ export default function Bills() {
       taxAmount: bill.taxAmount,
     }));
 
+  const accounts =
+    dataAccounts !== undefined &&
+    dataAccounts.map((account) => ({
+      currency: account.currency,
+      isBankAccount: account.isBankAccount,
+      accountName: account.name,
+    }));
+
   return (
     <div>
       <CompanyHeader />
@@ -59,7 +71,7 @@ export default function Bills() {
           </div>
         )}
         <Divider />
-        <BillTable billData={listBills} />
+        <BillTable billData={listBills} accountData={accounts} />
         <Footer />
       </div>
     </div>

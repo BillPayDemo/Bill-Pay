@@ -11,7 +11,7 @@ import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem
 import moment from "moment";
 import { getFormattedAmount, FormattedCell } from "./BillTable.helpers";
 
-export const BillTable = (billData) => {
+export const BillTable = ({ billData, accountData }) => {
   return (
     <TableContainer
       components={{
@@ -35,8 +35,8 @@ export const BillTable = (billData) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {billData.billData &&
-            billData.billData.map((bill) => (
+          {billData &&
+            billData.map((bill) => (
               <TableRow
                 key={bill.id}
                 sx={{
@@ -54,7 +54,7 @@ export const BillTable = (billData) => {
                   text={getFormattedAmount(bill.currency, bill.amountDue)}
                 />
                 <TableCell style={{ padding: "12px" }}>
-                  <ButtonColumnItem billData={bill} />
+                  <ButtonColumnItem billData={bill} accountData={accountData} />
                 </TableCell>
               </TableRow>
             ))}
