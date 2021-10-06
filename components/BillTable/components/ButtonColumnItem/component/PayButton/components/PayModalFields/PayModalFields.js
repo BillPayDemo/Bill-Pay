@@ -14,14 +14,11 @@ export const PayModalFields = ({ billData, accountData }) => {
 
   return (
     <div className={s.topContainer}>
-      <Typography variant="small" style={{ fontSize: "14px" }}>
+      <Typography variant="small" className={s.text14px}>
         Account name
       </Typography>
       <AccountNameField billData={billData} accountData={accountData} />
-      <Typography
-        variant="small"
-        style={{ fontSize: "10px", marginBottom: "16px" }}
-      >
+      <Typography variant="small" className={s.helperText}>
         Choose your account to make your payment from
       </Typography>
       <TextInput
