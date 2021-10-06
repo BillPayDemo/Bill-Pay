@@ -7,7 +7,6 @@ export const variableText = false;
 
 export const PayButton = ({ billData }) => {
   const { onPayModelOpen } = useContext(BillModalContext);
-
   return (
     <tr>
       <td>

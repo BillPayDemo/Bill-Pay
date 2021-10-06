@@ -12,7 +12,12 @@ import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
 
-export const PayModal = ({ isPayModalOpen, handlePayModalClose, billData }) => {
+export const PayModal = ({
+  isPayModalOpen,
+  handlePayModalClose,
+  billData,
+  accountData,
+}) => {
   const { state } = useContext(BillModalContext);
   const bill = billData.find((bill) => bill.id === state.billSelected);
   return bill ? (
@@ -50,7 +55,7 @@ export const PayModal = ({ isPayModalOpen, handlePayModalClose, billData }) => {
           </div>
         )}
         <Divider />
-        <PayModalFields />
+        <PayModalFields billData={bill} accountData={accountData} />
         <div className={s.payBillButtonContainer}>
           <Button
             label="Pay Bill"
