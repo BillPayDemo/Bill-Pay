@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
 
 export const BillTable = ({ billData, accountData }) => {
-  const { state, onViewModalClose, onPayModelClose } =
+  const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
   return (
     <>
@@ -29,7 +29,7 @@ export const BillTable = ({ billData, accountData }) => {
           />
           <PayModal
             isPayModalOpen={state.isPayModalOpen}
-            handlePayModalClose={onPayModelClose}
+            handlePayModalClose={onPayModalClose}
             billData={billData}
             accountData={accountData}
           />
