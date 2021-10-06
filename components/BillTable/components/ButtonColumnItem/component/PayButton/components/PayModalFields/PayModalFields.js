@@ -2,6 +2,11 @@ import React from "react";
 import { Checkbox, TextInput, Typography } from "@codat/orchard-ui";
 import s from "./PayModalFields.module.css";
 import { CardIcon } from "../../../../../../../CardIcon/CardIcon";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputBase from "@mui/material/InputBase";
+import { styled } from "@mui/material/styles";
+import FormControl from "@mui/material/FormControl";
 
 export const PayModalFields = () => {
   const [cardNumberValue, setCardNumberValue] = React.useState("");
@@ -11,8 +16,73 @@ export const PayModalFields = () => {
   const [checked, setChecked] = React.useState(false);
   const handleCheckboxClick = (event) => setChecked(event.target.checked);
 
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  const BootstrapInput = styled(InputBase)(({ theme }) => ({
+    "label + &": {
+      marginTop: theme.spacing(3),
+    },
+    "& .MuiInputBase-input": {
+      borderRadius: 4,
+      position: "relative",
+      backgroundColor: "white",
+      border: "1px solid rgba(221,221,221,1)",
+      fontSize: 16,
+      padding: "10px 26px 10px 12px",
+      "&:active": {
+        borderRadius: 4,
+        borderColor: "rgba(72,45,235,1)",
+        boxShadow: "0 0 0 0.05rem rgba(72,45,235,1)",
+      },
+    },
+  }));
+
   return (
     <div className={s.topContainer}>
+      <Typography variant="small" style={{ fontSize: "14px" }}>
+        Account name
+      </Typography>
+      <FormControl sx={{ width: "100%" }} variant="outlined">
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          sx={{ width: "100%" }}
+          input={<BootstrapInput />}
+          renderValue={(value) => {
+            if (value.length === 0) {
+              return (
+                <div style={{ color: "rgba(111, 116, 155, 1)" }}>Account</div>
+              );
+            }
+            return value;
+          }}
+        >
+          <MenuItem
+            disabled
+            value=""
+            style={{ color: "rgba(111, 116, 155, 1)" }}
+            selected
+          >
+            Account
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <Typography
+        variant="small"
+        style={{ fontSize: "10px", marginBottom: "16px" }}
+      >
+        Choose your account to make your payment from
+      </Typography>
       <TextInput
         id="card-number"
         label="Card number"
