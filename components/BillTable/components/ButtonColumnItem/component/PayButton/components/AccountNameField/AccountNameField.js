@@ -5,10 +5,10 @@ import FormControl from "@mui/material/FormControl";
 import { BootstrapInput, renderMethod } from "./AccountNameField.helpers";
 
 export const AccountNameField = ({ billData, accountData }) => {
-  const [accountName, setAaccountName] = React.useState("");
+  const [accountName, setAccountName] = React.useState("");
 
   const handleChange = (event) => {
-    setAaccountName(event.target.value);
+    setAccountName(event.target.value);
   };
 
   const accountsFilteringConditions = (account) => {

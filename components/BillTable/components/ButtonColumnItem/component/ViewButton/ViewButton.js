@@ -1,24 +1,20 @@
 import { TextLink } from "@codat/orchard-ui";
 import React from "react";
 import s from "./ViewButton.module.css";
-import { ViewModal } from "./components/ViewModal/ViewModal";
+import { BillModalContext } from "../../../../../ModalStore/ModalStore";
+import { useContext } from "react";
 
 export const ViewButton = ({ args, billData }) => {
-  const [isViewModalOpen, setViewModalOpen] = React.useState(false);
-  const handleOpen = () => setViewModalOpen(true);
-  const handleClose = () => setViewModalOpen(false);
-
+  const { onViewModalOpen } = useContext(BillModalContext);
   return (
     <tr>
       <td>
-        <TextLink onClick={handleOpen} className={s.linkText}>
+        <TextLink
+          onClick={() => onViewModalOpen(billData.id)}
+          className={s.linkText}
+        >
           View
         </TextLink>
-        <ViewModal
-          isViewModalOpen={isViewModalOpen}
-          billData={billData}
-          handleClose={handleClose}
-        />
       </td>
     </tr>
   );

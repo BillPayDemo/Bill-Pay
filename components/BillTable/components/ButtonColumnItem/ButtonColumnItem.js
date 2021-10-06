@@ -9,7 +9,7 @@ export const ButtonColumnItem = ({ billData, accountData }) => {
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
         <ViewButton billData={billData} />
-        <PayButton billData={billData} accountData={accountData} />
+        <PayButton billData={billData} />
       </tbody>
     </table>
   );

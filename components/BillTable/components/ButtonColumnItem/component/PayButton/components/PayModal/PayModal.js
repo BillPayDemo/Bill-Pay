@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@codat/orchard-ui";
 import s from "./PayModal.module.css";
 import Modal from "@mui/material/Modal";
@@ -10,6 +10,7 @@ import { DotDataPoint } from "../../../../../../../DotDataPoint/DotDataPoint";
 import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
 import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
+import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
 
 export const PayModal = ({
   isPayModalOpen,
@@ -17,7 +18,9 @@ export const PayModal = ({
   billData,
   accountData,
 }) => {
-  return (
+  const { state } = useContext(BillModalContext);
+  const bill = billData.find((bill) => bill.id === state.billSelected);
+  return bill ? (
     <Modal
       open={isPayModalOpen}
       onClose={handlePayModalClose}
@@ -31,31 +34,28 @@ export const PayModal = ({
         >
           <CloseIcon />
         </IconButton>
-        {billData && (
+        {bill && (
           <div className={s.topSectionContainer}>
             <TitleWithSubHeadings
-              upperTitle={billData.id}
+              upperTitle={bill.id}
               mainTitle="Bill Payment"
               lowerTitle={
                 <DotDataPoint
-                  leftText={billData.supplierName}
-                  rightText={billData.accountName}
+                  leftText={bill.supplierName}
+                  rightText={bill.accountName}
                 />
               }
               mainTitleCustomFontSize="26px"
             />
             <TitleWithSubHeadings
               upperTitle="Amount Due"
-              mainTitle={getFormattedAmount(
-                billData.currency,
-                billData.amountDue
-              )}
+              mainTitle={getFormattedAmount(bill.currency, bill.amountDue)}
               mainTitleCustomFontSize="20px"
             />
           </div>
         )}
         <Divider />
-        <PayModalFields billData={billData} accountData={accountData} />
+        <PayModalFields billData={bill} accountData={accountData} />
         <div className={s.payBillButtonContainer}>
           <Button
             label="Pay Bill"
@@ -65,5 +65,5 @@ export const PayModal = ({
         </div>
       </Box>
     </Modal>
-  );
+  ) : null;
 };
