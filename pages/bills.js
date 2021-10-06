@@ -1,5 +1,5 @@
 import axios from "axios";
-import useSWR, { useSWRConfig } from "swr";
+import useSWR from "swr";
 import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
 import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 import { BillTable } from "../components/BillTable/BillTable";
@@ -9,7 +9,6 @@ import { Footer } from "../components/Footer/Footer";
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Bills() {
-  const { mutate } = useSWRConfig();
   const { data: dataBills, error: errorBills } = useSWR("/api/bills", fetcher);
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
     "/api/companyInfo",
@@ -19,11 +18,6 @@ export default function Bills() {
     "/api/accounts",
     fetcher
   );
-
-  const handlePayClick = (id) => {
-    axios.put("/api/bills", { id: id });
-    mutate("/api/bills");
-  };
 
   const handleSyncClick = () => {
     axios.post("/api/bills", { action: "sync" });
