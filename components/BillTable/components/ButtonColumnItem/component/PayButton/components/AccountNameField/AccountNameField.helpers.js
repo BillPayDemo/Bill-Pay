@@ -1,5 +1,6 @@
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
+import s from "./AccountNameField.module.css";
 
 export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -14,3 +15,10 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
     padding: "10px 26px 10px 12px",
   },
 }));
+
+export const renderMethod = (value) => {
+  if (value.length === 0) {
+    return <div className={s.text}>Account</div>;
+  }
+  return value;
+};

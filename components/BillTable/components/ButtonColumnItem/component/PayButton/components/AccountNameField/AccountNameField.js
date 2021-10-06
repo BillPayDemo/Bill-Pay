@@ -2,8 +2,7 @@ import React from "react";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import { BootstrapInput } from "./AccountNameField.helpers";
-import s from "./AccountNameField.module.css";
+import { BootstrapInput, renderMethod } from "./AccountNameField.helpers";
 
 export const AccountNameField = ({ billData, accountData }) => {
   const [accountName, setAaccountName] = React.useState("");
@@ -30,12 +29,7 @@ export const AccountNameField = ({ billData, accountData }) => {
         onChange={handleChange}
         displayEmpty
         input={<BootstrapInput />}
-        renderValue={(value) => {
-          if (value.length === 0) {
-            return <div className={s.text}>Account</div>;
-          }
-          return value;
-        }}
+        renderValue={renderMethod}
       >
         {accountsFiltered.map((account) => (
           <MenuItem key={account.accountName} value={account.accountName}>
