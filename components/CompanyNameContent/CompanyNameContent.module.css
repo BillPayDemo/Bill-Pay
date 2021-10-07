@@ -8,6 +8,13 @@
   display: flex;
   flex-direction: row;
   gap: 14.5px;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.topContainer {
+  margin: 44px;
+  padding: 0;
 }
