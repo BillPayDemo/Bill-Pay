@@ -12,3 +12,13 @@
   width: 48px;
   height: 48px;
 }
+
+.h2 {
+  color: #29262B;
+  margin: 24px 0 0 0;
+}
+
+.paragraph {
+  margin: 8px 0 48px 0;
+  fontSize: 12px;
+}

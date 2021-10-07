@@ -6,22 +6,10 @@ export const RightHandPanel = () => {
   return (
     <div className={s.container}>
       <CircleCheckIcon fillColor="green" className={s.circleIcon} />
-      <Typography
-        style={{
-          color: "#29262B",
-          margin: "24px 0 0 0",
-        }}
-        variant="h2"
-      >
+      <Typography variant="h2" className={s.h2}>
         Connection Successful
       </Typography>
-      <Typography
-        style={{
-          margin: "8px 0 48px 0",
-          fontSize: "12px",
-        }}
-        variant="p"
-      >
+      <Typography variant="p" className={s.paragraph}>
         {"We've connected QuickBooks Online"}
       </Typography>
       <Button label="Launch Bills Portal" />
