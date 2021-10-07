@@ -1,20 +1,25 @@
 import { Footer } from "../components/Footer/Footer";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import { CompanyNameContent } from "../components/CompanyNameContent/CompanyNameContent";
+import Box from "@mui/material/Box";
+import {
+  companyNameStyling,
+  headingStyling,
+} from "../styles/CompanyName.styling";
 
 export default function CompanyName() {
   return (
     <>
-      <div className={styles.container}>
+      <style>{"body { background-color: #F2F2F2; }"}</style>
+      <Box sx={companyNameStyling}>
         <CompanyNameContent />
-        <h4 className="title">
-          Go straight to{" "}
-          <Link href="/bills">
-            <a>Bills</a>
-          </Link>
-        </h4>
-      </div>
+      </Box>
+      <h4 style={headingStyling}>
+        Go straight to{"  "}
+        <Link href="/bills">
+          <a>Bills</a>
+        </Link>
+      </h4>
       <Footer />
     </>
   );
