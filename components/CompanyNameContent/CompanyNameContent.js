@@ -2,9 +2,23 @@ import React from "react";
 import { Button, TextInput, Typography } from "@codat/orchard-ui";
 import "../../node_modules/@codat/orchard-ui/dist/index.css";
 import s from "./CompanyNameContent.module.css";
+import axios from "axios";
 
 export const CompanyNameContent = () => {
   const [companyNameValue, setCompanyNameValue] = React.useState("");
+  const handleCreateCompany = () => {
+    if (companyNameValue !== "") {
+      const results = axios.post("/api/company", {
+        companyName: companyNameValue,
+      });
+      results.then(function (result) {
+        // @debt Remove once this ticket has been approved
+        console.log(result.data);
+      });
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div>
@@ -19,7 +33,11 @@ export const CompanyNameContent = () => {
           />
         </div>
         <div>
-          <Button label="Next" className={s.button} onClick={() => null} />
+          <Button
+            label="Next"
+            className={s.button}
+            onClick={handleCreateCompany}
+          />
         </div>
       </div>
     </div>

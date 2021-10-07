@@ -5,13 +5,14 @@ import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWi
 import { BillTable } from "../components/BillTable/BillTable";
 import Divider from "@mui/material/Divider";
 import { Footer } from "../components/Footer/Footer";
+import { Button } from "@codat/orchard-ui";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Bills() {
   const { data: dataBills, error: errorBills } = useSWR("/api/bills", fetcher);
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
-    "/api/companyInfo",
+    "/api/company",
     fetcher
   );
   const { data: dataAccounts, error: errorAccounts } = useSWR(
