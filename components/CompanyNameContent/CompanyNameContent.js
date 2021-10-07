@@ -15,7 +15,7 @@ export const CompanyNameContent = () => {
           placeholder="e.g. Pete's Pies"
           value={companyNameValue}
           onChange={(event) => setCompanyNameValue(event.target.value)}
-          style={{ maxWidth: "350px" }}
+          style={{ width: "350px" }}
         />
         <Button label="Next" className={s.button} onClick={() => null} />
       </div>
