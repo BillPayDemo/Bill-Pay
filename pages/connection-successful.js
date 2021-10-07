@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { boxStyling } from "../styles/Box.styling";
+import { boxStyling } from "../styles/ConnectionSuccessful.styling";
 import { ConnectionSuccessfulBox } from "../components/ConnectionSuccessfulBox/ConnectionSuccessfulBox";
 
 export default function ConnectionSuccessful() {
