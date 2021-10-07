@@ -11,6 +11,8 @@ import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/
 import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
+import { useSWRConfig } from "swr";
+import axios from "axios";
 
 export const PayModal = ({
   isPayModalOpen,
@@ -20,6 +22,19 @@ export const PayModal = ({
 }) => {
   const { state } = useContext(BillModalContext);
   const bill = billData.find((bill) => bill.id === state.billSelected);
+
+  const { mutate } = useSWRConfig();
+
+  const processCodatPayment = (id) => {
+    axios.put("/api/bills", { id: id });
+    mutate("/api/bills");
+  };
+
+  const handlePayClick = (billId) => {
+    handlePayModalClose();
+    processCodatPayment(billId);
+  };
+
   return bill ? (
     <Modal
       open={isPayModalOpen}
@@ -60,7 +75,7 @@ export const PayModal = ({
           <Button
             label="Pay Bill"
             className={s.payBillButton}
-            onClick={handlePayModalClose}
+            onClick={() => handlePayClick(bill.id)}
           />
         </div>
       </Box>
