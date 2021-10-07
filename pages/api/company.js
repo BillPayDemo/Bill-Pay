@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         break;
       }
       var [codatStatus, results] = await createCompany(body.companyName);
-      res.status(codatStatus).end("Done");
+      res.status(codatStatus).json(results);
       break;
     default:
       res.setHeader("Allow", ["GET"]);

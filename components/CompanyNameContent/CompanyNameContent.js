@@ -8,7 +8,13 @@ export const CompanyNameContent = () => {
   const [companyNameValue, setCompanyNameValue] = React.useState("");
   const handleCreateCompany = () => {
     if (companyNameValue !== "") {
-      axios.post("/api/company", { companyName: companyNameValue });
+      const results = axios.post("/api/company", {
+        companyName: companyNameValue,
+      });
+      results.then(function (result) {
+        // @debt Remove once this ticket has been approved
+        console.log(result.data);
+      });
     } else {
       return null;
     }
