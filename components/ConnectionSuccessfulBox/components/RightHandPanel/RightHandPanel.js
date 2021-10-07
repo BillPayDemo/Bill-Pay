@@ -12,7 +12,7 @@ export const RightHandPanel = () => {
       <Typography variant="p" className={s.paragraph}>
         {"We've connected QuickBooks Online"}
       </Typography>
-      <Button label="Launch Bills Portal" />
+      <Button label="Launch Bills Portal" href="/bills" />
     </div>
   );
 };
