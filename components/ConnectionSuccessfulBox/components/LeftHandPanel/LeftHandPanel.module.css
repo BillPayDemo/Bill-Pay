@@ -1,0 +1,10 @@
+.container {
+  width: 50%;
+  background: #F7F8FF;
+  border-radius: 8px 0 0 8px;
+  padding: 60.5px 72px 60.5px 72px;
+}
+
+.divider {
+  margin-top: 208px;
+}

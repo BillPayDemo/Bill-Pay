@@ -1,0 +1,14 @@
+.container {
+  width: 50%;
+  border-radius: 8px 0 0 8px;
+  padding: 60.5px 72px 60.5px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleIcon {
+  width: 48px;
+  height: 48px;
+}

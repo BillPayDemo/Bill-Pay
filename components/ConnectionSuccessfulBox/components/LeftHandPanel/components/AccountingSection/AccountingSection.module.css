@@ -1,0 +1,19 @@
+.container {
+  padding-top: 48px;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 16px;
+}
