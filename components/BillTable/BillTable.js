@@ -18,6 +18,7 @@ import { BillModalContext } from "../ModalStore/ModalStore";
 export const BillTable = ({ billData, accountData }) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
+
   return (
     <>
       {billData && (
@@ -84,10 +85,7 @@ export const BillTable = ({ billData, accountData }) => {
                     text={getFormattedAmount(bill.currency, bill.amountDue)}
                   />
                   <TableCell className={s.buttonsTableCell}>
-                    <ButtonColumnItem
-                      billData={bill}
-                      accountData={accountData}
-                    />
+                    <ButtonColumnItem billData={bill} />
                   </TableCell>
                 </TableRow>
               ))}
