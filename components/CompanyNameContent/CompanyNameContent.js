@@ -7,17 +7,20 @@ export const CompanyNameContent = () => {
   const [companyNameValue, setCompanyNameValue] = React.useState("");
 
   return (
-    <div className={s.topContainer}>
+    <div>
       <Typography variant="h2">Enter your company name</Typography>
       <div className={s.inputContainer}>
-        <TextInput
-          id="company-name"
-          placeholder="e.g. Pete's Pies"
-          value={companyNameValue}
-          onChange={(event) => setCompanyNameValue(event.target.value)}
-          style={{ width: "350px" }}
-        />
-        <Button label="Next" className={s.button} onClick={() => null} />
+        <div className={s.textInputContainer}>
+          <TextInput
+            id="company-name"
+            placeholder="e.g. Pete's Pies"
+            value={companyNameValue}
+            onChange={(event) => setCompanyNameValue(event.target.value)}
+          />
+        </div>
+        <div>
+          <Button label="Next" className={s.button} onClick={() => null} />
+        </div>
       </div>
     </div>
   );
