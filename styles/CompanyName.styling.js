@@ -17,3 +17,11 @@ export const companyNameStyling = {
   margin: 0,
   padding: "36px 44px 20px 44px",
 };
+
+export const headingStyling = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  width: "100%",
+  alignItems: "center",
+};
