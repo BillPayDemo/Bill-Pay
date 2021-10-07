@@ -25,14 +25,14 @@ export const PayModal = ({
 
   const { mutate } = useSWRConfig();
 
-  const handlePayClick = (id) => {
+  const processCodatPayment = (id) => {
     axios.put("/api/bills", { id: id });
     mutate("/api/bills");
   };
 
-  const handlePayBillAndCloseModal = (billId) => {
+  const handlePayClick = (billId) => {
     handlePayModalClose();
-    handlePayClick(billId);
+    processCodatPayment(billId);
   };
 
   return bill ? (
@@ -75,7 +75,7 @@ export const PayModal = ({
           <Button
             label="Pay Bill"
             className={s.payBillButton}
-            onClick={() => handlePayBillAndCloseModal(bill.id)}
+            onClick={() => handlePayClick(bill.id)}
           />
         </div>
       </Box>
