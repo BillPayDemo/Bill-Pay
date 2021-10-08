@@ -6,6 +6,7 @@ import { Footer } from "../components/Footer/Footer";
 import Head from "next/head";
 
 export default function ConnectionSuccessful() {
+  console.log(sessionStorage.getItem("companyId"));
   return (
     <>
       <Head>
