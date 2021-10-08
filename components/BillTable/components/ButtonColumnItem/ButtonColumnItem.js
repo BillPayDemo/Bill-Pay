@@ -3,13 +3,20 @@ import "../../../../node_modules/@codat/orchard-ui/dist/index.css";
 import s from "./ButtonColumnItem.module.css";
 import { PayButton } from "./component/PayButton/PayButton";
 import { ViewButton } from "./component/ViewButton/ViewButton";
+import { PaidIndicator } from "../../../PaidIndicator/PaidIndicator";
 
-export const ButtonColumnItem = ({ billData, accountData }) => {
+export const ButtonColumnItem = ({ billData }) => {
   return (
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
-        <ViewButton billData={billData} />
-        <PayButton billData={billData} />
+        {billData.status !== "Paid" ? (
+          <>
+            <ViewButton billData={billData} />
+            <PayButton billData={billData} />
+          </>
+        ) : (
+          <PaidIndicator />
+        )}
       </tbody>
     </table>
   );
