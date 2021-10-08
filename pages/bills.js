@@ -20,6 +20,12 @@ export default function Bills() {
     fetcher
   );
 
+  const { data: dataStatus, error: errorDataStatus } = useSWR(
+    "/api/dataStatus",
+    fetcher
+  );
+  console.log(dataStatus);
+
   const handleSyncClick = () => {
     axios.post("/api/bills", { action: "sync" });
   };
