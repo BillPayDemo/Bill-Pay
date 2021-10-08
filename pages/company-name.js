@@ -15,7 +15,7 @@ export default function CompanyName() {
         <title>Company Name</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <style>{"body { background-color: #F2F2F2; }"}</style>
+      <style>{"body { background-color: #f7f8ff; }"}</style>
       <Box sx={companyNameStyling}>
         <CompanyNameContent />
       </Box>
