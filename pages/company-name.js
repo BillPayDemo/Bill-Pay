@@ -6,10 +6,15 @@ import {
   companyNameStyling,
   headingStyling,
 } from "../styles/CompanyName.styling";
+import Head from "next/head";
 
 export default function CompanyName() {
   return (
     <>
+      <Head>
+        <title>Company Name</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <style>{"body { background-color: #F2F2F2; }"}</style>
       <Box sx={companyNameStyling}>
         <CompanyNameContent />

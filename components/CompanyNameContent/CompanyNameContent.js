@@ -12,8 +12,7 @@ export const CompanyNameContent = () => {
         companyName: companyNameValue,
       });
       results.then(function (result) {
-        // @debt Remove once this ticket has been approved
-        console.log(result.data);
+        window.location.href = result.data.redirect;
       });
     } else {
       return null;
