@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import Box from "@mui/material/Box";
 import { landingPageBoxStyling } from "../styles/LandingPage.styling";
 import { LandingPageContent } from "../components/LandingPageContent/LandingPageContent";
+import { Footer } from "../components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Box sx={landingPageBoxStyling}>
         <LandingPageContent />
       </Box>
+      <Footer />
     </div>
   );
 }
