@@ -9,6 +9,7 @@ export const ConnectionSuccessfulBox = () => {
     setState(window.sessionStorage.getItem("companyId"));
   }, [setState]);
 
+  // @debt remove this ticket once this has gone through
   console.log(state);
   return (
     <div className={s.box}>
