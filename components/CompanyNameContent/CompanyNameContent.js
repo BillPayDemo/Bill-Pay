@@ -13,6 +13,7 @@ export const CompanyNameContent = () => {
       });
       results.then(function (result) {
         window.location.href = result.data.redirect;
+        sessionStorage.setItem("companyId", result.data.id);
       });
     } else {
       return null;
