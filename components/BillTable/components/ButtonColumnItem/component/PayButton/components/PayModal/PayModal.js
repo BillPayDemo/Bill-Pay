@@ -30,9 +30,13 @@ export const PayModal = ({
     mutate("/api/bills");
   };
 
+  const handleSyncBillsClick = () => {
+    axios.post("/api/bills", { action: "sync" });
+  };
+
   const handlePayClick = (billId) => {
-    handlePayModalClose();
     processCodatPayment(billId);
+    handlePayModalClose();
   };
 
   return bill ? (
@@ -72,6 +76,7 @@ export const PayModal = ({
         <Divider />
         <PayModalFields billData={bill} accountData={accountData} />
         <div className={s.payBillButtonContainer}>
+          <Button label="test sync" onClick={handleSyncBillsClick} />
           <Button
             label="Pay Bill"
             className={s.payBillButton}

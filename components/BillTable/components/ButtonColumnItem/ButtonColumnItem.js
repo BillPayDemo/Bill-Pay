@@ -3,7 +3,7 @@ import "../../../../node_modules/@codat/orchard-ui/dist/index.css";
 import s from "./ButtonColumnItem.module.css";
 import { PayButton } from "./component/PayButton/PayButton";
 import { ViewButton } from "./component/ViewButton/ViewButton";
-import { PaidIndicator } from "../../../PaidIndicator/PaidIndicator";
+import { Indicator } from "../../../Indicator/Indicator";
 
 export const ButtonColumnItem = ({ billData }) => {
   return (
@@ -15,7 +15,7 @@ export const ButtonColumnItem = ({ billData }) => {
             <PayButton billData={billData} />
           </>
         ) : (
-          <PaidIndicator />
+          <Indicator />
         )}
       </tbody>
     </table>
