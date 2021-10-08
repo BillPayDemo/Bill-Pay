@@ -5,7 +5,7 @@ import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWi
 import { BillTable } from "../components/BillTable/BillTable";
 import Divider from "@mui/material/Divider";
 import { Footer } from "../components/Footer/Footer";
-import { Button } from "@codat/orchard-ui";
+import Head from "next/head";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -52,6 +52,10 @@ export default function Bills() {
 
   return (
     <div>
+      <Head>
+        <title>Bills</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <CompanyHeader />
       <div
         style={{ paddingTop: "48px", paddingRight: "15%", paddingLeft: "15%" }}
