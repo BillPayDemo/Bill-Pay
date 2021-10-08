@@ -12,6 +12,7 @@ export const CompanyNameContent = () => {
         companyName: companyNameValue,
       });
       results.then(function (result) {
+        sessionStorage.setItem("companyId", result.data.id);
         window.location.href = result.data.redirect;
       });
     } else {
