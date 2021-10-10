@@ -12,6 +12,7 @@ export const BillModalContext = React.createContext({
   onPayModalClose: () => undefined,
   onPayModalOpen: () => undefined,
   onViewModalClosePayButtonOpen: () => undefined,
+  latestPaidBillId: () => undefined,
   modalState: initialBillModalState,
 });
 
@@ -46,6 +47,10 @@ export const ModalStore = ({ children }) => {
     });
   };
 
+  const latestPaidBillId = () => {
+    setState({ latestPaidBillId: state.latestPaidBillId });
+  };
+
   const store = {
     state,
     onViewModalClose,
@@ -53,6 +58,7 @@ export const ModalStore = ({ children }) => {
     onPayModalClose,
     onPayModalOpen,
     onViewModalClosePayButtonOpen,
+    latestPaidBillId,
   };
 
   return (

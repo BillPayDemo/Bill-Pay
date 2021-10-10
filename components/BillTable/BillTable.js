@@ -15,7 +15,7 @@ import { PayModal } from "./components/ButtonColumnItem/component/PayButton/comp
 import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
 
-export const BillTable = ({ billData, accountData }) => {
+export const BillTable = ({ billData, accountData, billStatus }) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
 
@@ -85,7 +85,7 @@ export const BillTable = ({ billData, accountData }) => {
                     text={getFormattedAmount(bill.currency, bill.amountDue)}
                   />
                   <TableCell className={s.buttonsTableCell}>
-                    <ButtonColumnItem billData={bill} />
+                    <ButtonColumnItem billData={bill} billStatus={billStatus} />
                   </TableCell>
                 </TableRow>
               ))}

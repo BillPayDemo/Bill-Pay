@@ -5,7 +5,13 @@ import { PayButton } from "./component/PayButton/PayButton";
 import { ViewButton } from "./component/ViewButton/ViewButton";
 import { Indicator } from "../../../Indicator/Indicator";
 
-export const ButtonColumnItem = ({ billData }) => {
+export const ButtonColumnItem = ({ billData, billStatus }) => {
+  const indicatorStatus =
+    billData.id === "135"
+      ? billStatus !== "Complete"
+        ? "pending"
+        : "paid"
+      : "paid";
   return (
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
@@ -15,7 +21,7 @@ export const ButtonColumnItem = ({ billData }) => {
             <PayButton billData={billData} />
           </>
         ) : (
-          <Indicator />
+          <Indicator status={indicatorStatus} />
         )}
       </tbody>
     </table>

@@ -1,12 +1,11 @@
 import { getDataStatus } from "../../lib/codat";
 
 export default async function handler(req, res) {
-  const { method, body } = req;
+  const { method } = req;
 
   switch (method) {
     case "GET":
       var [codatStatus, results] = await getDataStatus();
-      console.log("poooo", results, codatStatus);
       res.status(codatStatus).json(results);
       break;
     default:

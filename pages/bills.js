@@ -24,7 +24,8 @@ export default function Bills() {
     "/api/dataStatus",
     fetcher
   );
-  console.log(dataStatus);
+
+  const billStatus = dataStatus && dataStatus.bills.currentStatus;
 
   const handleSyncClick = () => {
     axios.post("/api/bills", { action: "sync" });
@@ -76,7 +77,11 @@ export default function Bills() {
           </div>
         )}
         <Divider />
-        <BillTable billData={listBills} accountData={accounts} />
+        <BillTable
+          billData={listBills}
+          accountData={accounts}
+          billStatus={billStatus}
+        />
         <Footer />
       </div>
     </div>
