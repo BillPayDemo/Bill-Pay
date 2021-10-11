@@ -31,8 +31,9 @@ export const PayModal = ({
   };
 
   const handlePayClick = (billId) => {
-    handlePayModalClose();
     processCodatPayment(billId);
+    sessionStorage.setItem("latestPaidBillId", billId);
+    handlePayModalClose();
   };
 
   return bill ? (

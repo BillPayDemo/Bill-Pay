@@ -43,6 +43,13 @@ export default function Bills() {
     fetcher
   );
 
+  const { data: dataStatus, error: errorDataStatus } = useSWR(
+    "/api/dataStatus",
+    fetcher
+  );
+
+  const billStatus = dataStatus && dataStatus.bills.currentStatus;
+
   const handleSyncClick = () => {
     axios.post("/api/bills", { action: "sync" });
   };
@@ -93,7 +100,11 @@ export default function Bills() {
           </div>
         )}
         <Divider />
-        <BillTable billData={listBills} accountData={accounts} />
+        <BillTable
+          billData={listBills}
+          accountData={accounts}
+          billStatus={billStatus}
+        />
         <Footer />
       </div>
     </div>
