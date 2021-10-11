@@ -1,12 +1,19 @@
 import { getCompanyInfo, createCompany } from "../../lib/codat";
 
 export default async function handler(req, res) {
-  const { method, body } = req;
+  const { method, body, url } = req;
 
   switch (method) {
     case "GET":
-      var [codatStatus, results] = await getCompanyInfo();
-      res.status(codatStatus).json(results);
+      const queryRaw = url.split("?")[1];
+      const query = new URLSearchParams(queryRaw);
+      const id = query.get("id");
+      if (id) {
+        var [codatStatus, results] = await getCompanyInfo(id);
+        res.status(codatStatus).json(results);
+      } else {
+        res.status(405).end();
+      }
       break;
     case "POST":
       if (!body.companyName || body.companyName === "") {
