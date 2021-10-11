@@ -20,7 +20,7 @@ export const PayModal = ({
   billData,
   accountData,
 }) => {
-  const { state, onPayBill } = useContext(BillModalContext);
+  const { state } = useContext(BillModalContext);
   const bill = billData.find((bill) => bill.id === state.billSelected);
 
   const { mutate } = useSWRConfig();
@@ -30,14 +30,10 @@ export const PayModal = ({
     mutate("/api/bills");
   };
 
-  const handleSyncBillsClick = () => {
-    axios.post("/api/bills", { action: "sync" });
-  };
-
   const handlePayClick = (billId) => {
     processCodatPayment(billId);
-    onPayBill(billId);
-    // handlePayModalClose();
+    sessionStorage.setItem("latestPaidBillId", billId);
+    handlePayModalClose();
   };
 
   return bill ? (
@@ -77,7 +73,6 @@ export const PayModal = ({
         <Divider />
         <PayModalFields billData={bill} accountData={accountData} />
         <div className={s.payBillButtonContainer}>
-          <Button label="test sync" onClick={handleSyncBillsClick} />
           <Button
             label="Pay Bill"
             className={s.payBillButton}

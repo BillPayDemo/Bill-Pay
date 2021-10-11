@@ -7,19 +7,20 @@ import { Indicator } from "../../../Indicator/Indicator";
 import { BillModalContext } from "../../../ModalStore/ModalStore";
 
 export const ButtonColumnItem = ({ billData, billStatus }) => {
-  const { state, onPayBill } = useContext(BillModalContext);
-  console.log(state.billSelected, state.billLatestPaid, state);
-  // const bill = billData.find((bill) => bill.id === state.billSelected);
+  const latestPaidBillId =
+    window.sessionStorage.getItem("latestPaidBillId") ?? "";
   const indicatorStatus =
-    billData.id === state.billLatestPaid
-      ? billStatus !== "Complete"
-        ? "pending"
-        : "paid"
+    billData.id === latestPaidBillId &&
+    (billStatus !== "Complete" || billData.status !== "Paid")
+      ? "pending"
       : "paid";
+
   return (
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
-        {billData.status !== "Paid" && billData.amountDue !== 0 ? (
+        {billData.status !== "Paid" &&
+        billData.amountDue !== 0 &&
+        billData.id !== latestPaidBillId ? (
           <>
             <ViewButton billData={billData} />
             <PayButton billData={billData} />
