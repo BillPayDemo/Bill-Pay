@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "../../../../node_modules/@codat/orchard-ui/dist/index.css";
 import s from "./ButtonColumnItem.module.css";
 import { PayButton } from "./component/PayButton/PayButton";
