@@ -40,6 +40,13 @@ export default function Bills() {
     fetcherWithId
   );
 
+  const { data: dataStatus, error: errorDataStatus } = useSWR(
+    "/api/dataStatus",
+    fetcher
+  );
+
+  const billStatus = dataStatus && dataStatus.bills.currentStatus;
+
   const listBills =
     dataBills !== undefined &&
     dataBills.map((bill) => ({
@@ -87,7 +94,11 @@ export default function Bills() {
           </div>
         )}
         <Divider />
-        <BillTable billData={listBills} accountData={accounts} />
+        <BillTable
+          billData={listBills}
+          accountData={accounts}
+          billStatus={billStatus}
+        />
         <Footer />
       </div>
     </div>

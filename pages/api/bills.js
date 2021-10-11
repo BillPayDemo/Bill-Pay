@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { getBillsCodat, payBillCodat, syncCodat } from "../../lib/codat";
+import { getBillsCodat, payBillCodat, syncBills } from "../../lib/codat";
 
 export default async function handler(req, res) {
   const { method, body, url } = req;
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
           .end("Missing action, action is not sync or missing company id");
         break;
       }
-      var [codatStatus, results] = await syncCodat(body.companyId);
+      var [codatStatus, results] = await syncBills(body.companyId);
       res.status(codatStatus).end(results);
       break;
     default:

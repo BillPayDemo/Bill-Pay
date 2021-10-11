@@ -18,7 +18,7 @@ import { Button } from "@codat/orchard-ui";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export const BillTable = ({ billData, accountData }) => {
+export const BillTable = ({ billData, accountData, billStatus }) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
 
@@ -97,7 +97,7 @@ export const BillTable = ({ billData, accountData }) => {
                     text={getFormattedAmount(bill.currency, bill.amountDue)}
                   />
                   <TableCell className={s.buttonsTableCell}>
-                    <ButtonColumnItem billData={bill} />
+                    <ButtonColumnItem billData={bill} billStatus={billStatus} />
                   </TableCell>
                 </TableRow>
               ))}

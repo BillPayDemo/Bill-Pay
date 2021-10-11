@@ -19,7 +19,10 @@ export const ModalStore = ({ children }) => {
   const [state, setState] = useState(initialBillModalState);
 
   const onViewModalClose = () => {
-    setState({ ...initialBillModalState, isViewModalOpen: false });
+    setState({
+      ...initialBillModalState,
+      isViewModalOpen: false,
+    });
   };
   const onViewModalOpen = (id) => {
     setState({
@@ -29,7 +32,10 @@ export const ModalStore = ({ children }) => {
     });
   };
   const onPayModalClose = () => {
-    setState({ ...initialBillModalState, isPayModalOpen: false });
+    setState({
+      ...initialBillModalState,
+      isPayModalOpen: false,
+    });
   };
   const onPayModalOpen = (id) => {
     setState({
