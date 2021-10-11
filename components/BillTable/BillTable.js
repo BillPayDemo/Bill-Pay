@@ -103,7 +103,9 @@ export const BillTable = ({ billData, accountData }) => {
               ))}
           </TableBody>
         </Table>
-        <Button label="Sync" onClick={handleSyncClick} />
+        <div className={s.button}>
+          <Button label="Sync" onClick={handleSyncClick} />
+        </div>
       </TableContainer>
     </>
   );
