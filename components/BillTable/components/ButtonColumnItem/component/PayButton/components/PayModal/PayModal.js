@@ -20,7 +20,7 @@ export const PayModal = ({
   billData,
   accountData,
 }) => {
-  const { state } = useContext(BillModalContext);
+  const { state, onPayBill } = useContext(BillModalContext);
   const bill = billData.find((bill) => bill.id === state.billSelected);
 
   const { mutate } = useSWRConfig();
@@ -36,7 +36,8 @@ export const PayModal = ({
 
   const handlePayClick = (billId) => {
     processCodatPayment(billId);
-    handlePayModalClose();
+    onPayBill(billId);
+    // handlePayModalClose();
   };
 
   return bill ? (

@@ -4,6 +4,7 @@ export const initialBillModalState = {
   isViewModalOpen: false,
   isPayModalOpen: false,
   billSelected: "",
+  billLatestPaid: "",
 };
 
 export const BillModalContext = React.createContext({
@@ -12,7 +13,7 @@ export const BillModalContext = React.createContext({
   onPayModalClose: () => undefined,
   onPayModalOpen: () => undefined,
   onViewModalClosePayButtonOpen: () => undefined,
-  latestPaidBillId: () => undefined,
+  onPayBill: () => undefined,
   modalState: initialBillModalState,
 });
 
@@ -20,23 +21,33 @@ export const ModalStore = ({ children }) => {
   const [state, setState] = useState(initialBillModalState);
 
   const onViewModalClose = () => {
-    setState({ ...initialBillModalState, isViewModalOpen: false });
+    setState({
+      ...initialBillModalState,
+      isViewModalOpen: false,
+      billLatestPaid: state.billLatestPaid,
+    });
   };
   const onViewModalOpen = (id) => {
     setState({
       ...initialBillModalState,
       isViewModalOpen: true,
       billSelected: id,
+      billLatestPaid: state.billLatestPaid,
     });
   };
   const onPayModalClose = () => {
-    setState({ ...initialBillModalState, isPayModalOpen: false });
+    setState({
+      ...initialBillModalState,
+      isPayModalOpen: false,
+      billLatestPaid: state.billLatestPaid,
+    });
   };
   const onPayModalOpen = (id) => {
     setState({
       ...initialBillModalState,
       isPayModalOpen: true,
       billSelected: id,
+      billLatestPaid: state.billLatestPaid,
     });
   };
   const onViewModalClosePayButtonOpen = () => {
@@ -44,11 +55,12 @@ export const ModalStore = ({ children }) => {
       billSelected: state.billSelected,
       isViewModalOpen: false,
       isPayModalOpen: true,
+      billLatestPaid: state.billLatestPaid,
     });
   };
 
-  const latestPaidBillId = () => {
-    setState({ latestPaidBillId: state.latestPaidBillId });
+  const onPayBill = (id) => {
+    setState({ ...initialBillModalState, billLatestPaid: id });
   };
 
   const store = {
@@ -58,7 +70,7 @@ export const ModalStore = ({ children }) => {
     onPayModalClose,
     onPayModalOpen,
     onViewModalClosePayButtonOpen,
-    latestPaidBillId,
+    onPayBill,
   };
 
   return (
