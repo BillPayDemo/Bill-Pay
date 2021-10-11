@@ -30,11 +30,13 @@ export default async function handler(req, res) {
       res.status(codatStatus).end(results);
       break;
     case "POST":
-      if (!body.action && body.action != "sync") {
-        res.status(422).end("Missing action or action is not sync");
+      if ((!body.action && body.action != "sync") || !body.companyId) {
+        res
+          .status(422)
+          .end("Missing action, action is not sync or missing company id");
         break;
       }
-      var [codatStatus, results] = await syncCodat();
+      var [codatStatus, results] = await syncCodat(body.companyId);
       res.status(codatStatus).end(results);
       break;
     default:

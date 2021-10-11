@@ -14,10 +14,22 @@ import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/co
 import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
 import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
+import { Button } from "@codat/orchard-ui";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export const BillTable = ({ billData, accountData }) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
+
+  const [companyId, setCompanyId] = useState("");
+  useEffect(() => {
+    setCompanyId(window.sessionStorage.getItem("companyId"));
+  }, [setCompanyId]);
+
+  const handleSyncClick = () => {
+    axios.post("/api/bills", { action: "sync", companyId: companyId });
+  };
 
   return (
     <>
@@ -91,6 +103,7 @@ export const BillTable = ({ billData, accountData }) => {
               ))}
           </TableBody>
         </Table>
+        <Button label="Sync" onClick={handleSyncClick} />
       </TableContainer>
     </>
   );

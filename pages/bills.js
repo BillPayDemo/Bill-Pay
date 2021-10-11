@@ -40,10 +40,6 @@ export default function Bills() {
     fetcherWithId
   );
 
-  const handleSyncClick = () => {
-    axios.post("/api/bills", { action: "sync" });
-  };
-
   const listBills =
     dataBills !== undefined &&
     dataBills.map((bill) => ({
