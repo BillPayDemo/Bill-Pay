@@ -53,7 +53,7 @@ export const PayModal = ({
         {bill && (
           <div className={s.topSectionContainer}>
             <TitleWithSubHeadings
-              upperTitle={bill.id}
+              upperTitle={bill.reference ?? bill.id}
               mainTitle="Bill Payment"
               lowerTitle={
                 <DotDataPoint
