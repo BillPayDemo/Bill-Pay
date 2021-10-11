@@ -1,23 +1,24 @@
 import Head from "next/head";
-import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import Box from "@mui/material/Box";
+import { landingPageBoxStyling } from "../styles/LandingPage.styling";
+import { LandingPageContent } from "../components/LandingPageContent/LandingPageContent";
+import { Footer } from "../components/Footer/Footer";
 
 export default function Home() {
   return (
     <div className={styles.container}>
+      <style>{"body { background-color: #f7f8ff; }"}</style>
+
       <Head>
-        <title>Accounting</title>
+        <title>Bill Pay</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>Accounting</h1>
-        <h1 className="title">
-          <Link href="/company-name">
-            <a>Click here to create a new company</a>
-          </Link>
-        </h1>
-      </main>
+      <Box sx={landingPageBoxStyling}>
+        <LandingPageContent />
+      </Box>
+      <Footer />
     </div>
   );
 }

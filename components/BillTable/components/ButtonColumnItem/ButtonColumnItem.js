@@ -19,7 +19,7 @@ export const ButtonColumnItem = ({ billData, billStatus }) => {
   return (
     <table className={s.table}>
       <tbody className={s.buttonsLayout}>
-        {billData.status !== "Paid" ? (
+        {billData.status !== "Paid" && billData.amountDue !== 0 ? (
           <>
             <ViewButton billData={billData} />
             <PayButton billData={billData} />
