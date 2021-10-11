@@ -4,7 +4,6 @@ export const initialBillModalState = {
   isViewModalOpen: false,
   isPayModalOpen: false,
   billSelected: "",
-  billLatestPaid: "",
 };
 
 export const BillModalContext = React.createContext({
@@ -13,7 +12,6 @@ export const BillModalContext = React.createContext({
   onPayModalClose: () => undefined,
   onPayModalOpen: () => undefined,
   onViewModalClosePayButtonOpen: () => undefined,
-  onPayBill: () => undefined,
   modalState: initialBillModalState,
 });
 
@@ -24,7 +22,6 @@ export const ModalStore = ({ children }) => {
     setState({
       ...initialBillModalState,
       isViewModalOpen: false,
-      billLatestPaid: state.billLatestPaid,
     });
   };
   const onViewModalOpen = (id) => {
@@ -32,14 +29,12 @@ export const ModalStore = ({ children }) => {
       ...initialBillModalState,
       isViewModalOpen: true,
       billSelected: id,
-      billLatestPaid: state.billLatestPaid,
     });
   };
   const onPayModalClose = () => {
     setState({
       ...initialBillModalState,
       isPayModalOpen: false,
-      billLatestPaid: state.billLatestPaid,
     });
   };
   const onPayModalOpen = (id) => {
@@ -47,7 +42,6 @@ export const ModalStore = ({ children }) => {
       ...initialBillModalState,
       isPayModalOpen: true,
       billSelected: id,
-      billLatestPaid: state.billLatestPaid,
     });
   };
   const onViewModalClosePayButtonOpen = () => {
@@ -55,12 +49,7 @@ export const ModalStore = ({ children }) => {
       billSelected: state.billSelected,
       isViewModalOpen: false,
       isPayModalOpen: true,
-      billLatestPaid: state.billLatestPaid,
     });
-  };
-
-  const onPayBill = (id) => {
-    setState({ ...initialBillModalState, billLatestPaid: id });
   };
 
   const store = {
@@ -70,7 +59,6 @@ export const ModalStore = ({ children }) => {
     onPayModalClose,
     onPayModalOpen,
     onViewModalClosePayButtonOpen,
-    onPayBill,
   };
 
   return (
