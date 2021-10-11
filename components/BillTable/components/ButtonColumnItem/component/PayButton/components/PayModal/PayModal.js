@@ -14,6 +14,18 @@ import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
 import { useSWRConfig } from "swr";
 import axios from "axios";
+import useSWR from "swr";
+
+const fetcherWithId = (url, companyId) =>
+  axios
+    .get(url, {
+      params: {
+        id: companyId,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    });
 
 export const PayModal = ({
   isPayModalOpen,
@@ -42,6 +54,11 @@ export const PayModal = ({
     setAccountId(window.sessionStorage.getItem("accountId"));
   }, [setAccountId]);
 
+  const { data: dataStatus, error: errorDataStatus } = useSWR(
+    ["/api/dataStatus", companyId],
+    fetcherWithId
+  );
+
   const processCodatPayment = (id) => {
     axios.put("/api/bills", {
       id: id,
@@ -52,10 +69,15 @@ export const PayModal = ({
     mutate("/api/bills");
   };
 
-  const handlePayClick = (billId) => {
+  const handleSync = () => {
+    axios.post("/api/bills", { action: "sync", companyId: companyId });
+  };
+
+  const handlePayClick = async (billId) => {
     processCodatPayment(billId);
     sessionStorage.setItem("latestPaidBillId", billId);
     handlePayModalClose();
+    handleSync();
   };
 
   return bill ? (

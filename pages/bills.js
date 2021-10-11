@@ -28,7 +28,8 @@ export default function Bills() {
 
   const { data: dataBills, error: errorBills } = useSWR(
     ["/api/bills", companyId],
-    fetcherWithId
+    fetcherWithId,
+    { refreshInterval: 2000 }
   );
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
@@ -41,8 +42,9 @@ export default function Bills() {
   );
 
   const { data: dataStatus, error: errorDataStatus } = useSWR(
-    "/api/dataStatus",
-    fetcher
+    ["/api/dataStatus", companyId],
+    fetcherWithId,
+    { refreshInterval: 2000 }
   );
 
   const billStatus = dataStatus && dataStatus.bills.currentStatus;

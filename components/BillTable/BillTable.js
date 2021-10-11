@@ -27,10 +27,6 @@ export const BillTable = ({ billData, accountData, billStatus }) => {
     setCompanyId(window.sessionStorage.getItem("companyId"));
   }, [setCompanyId]);
 
-  const handleSyncClick = () => {
-    axios.post("/api/bills", { action: "sync", companyId: companyId });
-  };
-
   return (
     <>
       {billData && (
@@ -103,9 +99,6 @@ export const BillTable = ({ billData, accountData, billStatus }) => {
               ))}
           </TableBody>
         </Table>
-        <div className={s.button}>
-          <Button label="Sync" onClick={handleSyncClick} />
-        </div>
       </TableContainer>
     </>
   );
