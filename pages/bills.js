@@ -6,15 +6,38 @@ import { BillTable } from "../components/BillTable/BillTable";
 import Divider from "@mui/material/Divider";
 import { Footer } from "../components/Footer/Footer";
 import Head from "next/head";
+import { useState, useEffect } from "react";
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url) =>
+  axios.get(url).then((res) => {
+    return res.data;
+  });
+
+const fetcherWithId = (url, companyId) =>
+  axios
+    .get(url, {
+      params: {
+        id: companyId,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    });
 
 export default function Bills() {
+  const [companyId, setValue] = useState("");
+
+  useEffect(() => {
+    setValue(window.sessionStorage.getItem("companyId"));
+  }, [setValue]);
+
   const { data: dataBills, error: errorBills } = useSWR("/api/bills", fetcher);
+
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
-    "/api/company",
-    fetcher
+    ["/api/company", companyId],
+    fetcherWithId
   );
+
   const { data: dataAccounts, error: errorAccounts } = useSWR(
     "/api/accounts",
     fetcher
