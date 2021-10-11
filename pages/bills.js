@@ -8,11 +8,6 @@ import { Footer } from "../components/Footer/Footer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 
-const fetcher = (url) =>
-  axios.get(url).then((res) => {
-    return res.data;
-  });
-
 const fetcherWithId = (url, companyId) =>
   axios
     .get(url, {
@@ -31,16 +26,18 @@ export default function Bills() {
     setValue(window.sessionStorage.getItem("companyId"));
   }, [setValue]);
 
-  const { data: dataBills, error: errorBills } = useSWR("/api/bills", fetcher);
+  const { data: dataBills, error: errorBills } = useSWR(
+    ["/api/bills", companyId],
+    fetcherWithId
+  );
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
     ["/api/company", companyId],
     fetcherWithId
   );
-
   const { data: dataAccounts, error: errorAccounts } = useSWR(
-    "/api/accounts",
-    fetcher
+    ["/api/accounts", companyId],
+    fetcherWithId
   );
 
   const handleSyncClick = () => {
@@ -71,6 +68,7 @@ export default function Bills() {
       currency: account.currency,
       isBankAccount: account.isBankAccount,
       accountName: account.name,
+      accountId: account.id,
     }));
 
   return (

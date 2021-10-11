@@ -19,12 +19,6 @@ export default function CompanyName() {
       <Box sx={companyNameStyling}>
         <CompanyNameContent />
       </Box>
-      <h4 style={headingStyling}>
-        Go straight to{"  "}
-        <Link href="/bills">
-          <a>Bills</a>
-        </Link>
-      </h4>
       <Footer />
     </>
   );

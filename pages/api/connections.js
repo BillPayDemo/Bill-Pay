@@ -1,4 +1,4 @@
-import { getAccounts } from "../../lib/codat";
+import { getConnectionId } from "../../lib/codat";
 
 export default async function handler(req, res) {
   const { method, body, url } = req;
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       const query = new URLSearchParams(queryRaw);
       const id = query.get("id");
       if (id) {
-        var [codatStatus, results] = await getAccounts(id);
+        var [codatStatus, results] = await getConnectionId(id);
         res.status(codatStatus).json(results);
       } else {
         res.status(405).end();

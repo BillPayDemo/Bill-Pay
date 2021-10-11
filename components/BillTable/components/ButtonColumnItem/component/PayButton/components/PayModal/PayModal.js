@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@codat/orchard-ui";
 import s from "./PayModal.module.css";
 import Modal from "@mui/material/Modal";
@@ -25,8 +26,29 @@ export const PayModal = ({
 
   const { mutate } = useSWRConfig();
 
+  const [connectionId, setConnectionId] = useState("");
+  const [companyId, setCompanyId] = useState("");
+  const [accountId, setAccountId] = useState("");
+
+  useEffect(() => {
+    setConnectionId(window.sessionStorage.getItem("connectionId"));
+  }, [setConnectionId]);
+
+  useEffect(() => {
+    setCompanyId(window.sessionStorage.getItem("companyId"));
+  }, [setCompanyId]);
+
+  useEffect(() => {
+    setAccountId(window.sessionStorage.getItem("accountId"));
+  }, [setAccountId]);
+
   const processCodatPayment = (id) => {
-    axios.put("/api/bills", { id: id });
+    axios.put("/api/bills", {
+      id: id,
+      connectionId: connectionId,
+      companyId: companyId,
+      accountId: accountId,
+    });
     mutate("/api/bills");
   };
 
