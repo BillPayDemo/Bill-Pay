@@ -4,7 +4,6 @@ import s from "./ButtonColumnItem.module.css";
 import { PayButton } from "./component/PayButton/PayButton";
 import { ViewButton } from "./component/ViewButton/ViewButton";
 import { Indicator } from "../../../Indicator/Indicator";
-import { BillModalContext } from "../../../ModalStore/ModalStore";
 
 export const ButtonColumnItem = ({ billData, billStatus }) => {
   const latestPaidBillId =
