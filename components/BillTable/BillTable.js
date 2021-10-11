@@ -14,8 +14,6 @@ import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/co
 import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
 import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
-import { Button } from "@codat/orchard-ui";
-import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const BillTable = ({ billData, accountData, billStatus }) => {
