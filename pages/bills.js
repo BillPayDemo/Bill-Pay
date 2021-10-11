@@ -12,11 +12,6 @@ import s from "../styles/Bills.module.css";
 import Box from "@mui/material/Box";
 import { boxStyling } from "../styles/Bills.styling";
 
-const fetcher = (url) =>
-  axios.get(url).then((res) => {
-    return res.data;
-  });
-
 const fetcherWithId = (url, companyId) =>
   axios
     .get(url, {
@@ -41,28 +36,28 @@ export default function Bills() {
     setValue(window.sessionStorage.getItem("companyId"));
   }, [setValue]);
 
-  const { data: dataBills, error: errorBills } = useSWR("/api/bills", fetcher);
+  const { data: dataBills, error: errorBills } = useSWR(
+    ["/api/bills", companyId],
+    fetcherWithId,
+    { refreshInterval: 2000 }
+  );
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
     ["/api/company", companyId],
     fetcherWithId
   );
-
   const { data: dataAccounts, error: errorAccounts } = useSWR(
-    "/api/accounts",
-    fetcher
+    ["/api/accounts", companyId],
+    fetcherWithId
   );
 
   const { data: dataStatus, error: errorDataStatus } = useSWR(
-    "/api/dataStatus",
-    fetcher
+    ["/api/dataStatus", companyId],
+    fetcherWithId,
+    { refreshInterval: 2000 }
   );
 
   const billStatus = dataStatus && dataStatus.bills.currentStatus;
-
-  const handleSyncClick = () => {
-    axios.post("/api/bills", { action: "sync" });
-  };
 
   const listBills =
     dataBills !== undefined &&
@@ -88,6 +83,7 @@ export default function Bills() {
       currency: account.currency,
       isBankAccount: account.isBankAccount,
       accountName: account.name,
+      accountId: account.id,
     }));
 
   return (

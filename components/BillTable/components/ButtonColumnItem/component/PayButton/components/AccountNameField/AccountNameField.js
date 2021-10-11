@@ -9,6 +9,10 @@ export const AccountNameField = ({ billData, accountData }) => {
 
   const handleChange = (event) => {
     setAccountName(event.target.value);
+    const currentAccount = accountData.find(
+      (account) => account.accountName === event.target.value
+    );
+    sessionStorage.setItem("accountId", currentAccount.accountId);
   };
 
   const accountsFilteringConditions = (account) => {

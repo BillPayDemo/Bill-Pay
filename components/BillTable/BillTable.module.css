@@ -5,3 +5,10 @@
 .buttonsTableCell {
   padding: 12px
 }
+
+.button {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

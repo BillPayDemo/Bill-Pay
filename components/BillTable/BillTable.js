@@ -14,10 +14,16 @@ import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/co
 import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
 import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
+import { useState, useEffect } from "react";
 
 export const BillTable = ({ billData, accountData, billStatus }) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
+
+  const [companyId, setCompanyId] = useState("");
+  useEffect(() => {
+    setCompanyId(window.sessionStorage.getItem("companyId"));
+  }, [setCompanyId]);
 
   return (
     <>
