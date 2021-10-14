@@ -4,7 +4,7 @@ import s from "./PayModalFields.module.css";
 import { CardIcon } from "../../../../../../../CardIcon/CardIcon";
 import { AccountNameField } from "../AccountNameField/AccountNameField";
 
-export const PayModalFields = ({ billData, accountData }) => {
+export const PayModalFields = ({ billData, accountData, setAccountId }) => {
   const [cardNumberValue, setCardNumberValue] = React.useState("");
   const [expiryDateValue, setExpiryDateValue] = React.useState("");
   const [cvcValue, setCvcValue] = React.useState("");
@@ -17,7 +17,11 @@ export const PayModalFields = ({ billData, accountData }) => {
       <Typography variant="small" className={s.text14px}>
         Account name
       </Typography>
-      <AccountNameField billData={billData} accountData={accountData} />
+      <AccountNameField
+        billData={billData}
+        accountData={accountData}
+        setAccountId={setAccountId}
+      />
       <Typography variant="small" className={s.helperText}>
         Choose an account to make your payment from
       </Typography>

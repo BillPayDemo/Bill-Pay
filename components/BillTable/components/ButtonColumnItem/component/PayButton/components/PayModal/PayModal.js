@@ -12,9 +12,8 @@ import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/
 import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
-import { useSWRConfig } from "swr";
+import "../../../../../../../../node_modules/@codat/orchard-ui/dist/index.css";
 import axios from "axios";
-import useSWR from "swr";
 
 const fetcherWithId = (url, companyId) =>
   axios
@@ -32,15 +31,15 @@ export const PayModal = ({
   handlePayModalClose,
   billData,
   accountData,
+  mutateBills,
 }) => {
   const { state } = useContext(BillModalContext);
   const bill = billData.find((bill) => bill.id === state.billSelected);
 
-  const { mutate } = useSWRConfig();
-
   const [connectionId, setConnectionId] = useState("");
   const [companyId, setCompanyId] = useState("");
   const [accountId, setAccountId] = useState("");
+  const [inPaymentProcess, setInPaymentProcess] = useState(false);
 
   useEffect(() => {
     setConnectionId(window.sessionStorage.getItem("connectionId"));
@@ -54,30 +53,27 @@ export const PayModal = ({
     setAccountId(window.sessionStorage.getItem("accountId"));
   }, [setAccountId]);
 
-  const { data: dataStatus, error: errorDataStatus } = useSWR(
-    ["/api/dataStatus", companyId],
-    fetcherWithId
-  );
-
-  const processCodatPayment = (id) => {
-    axios.put("/api/bills", {
+  const processCodatPayment = async (id) => {
+    await axios.put("/api/bills", {
       id: id,
       connectionId: connectionId,
       companyId: companyId,
       accountId: accountId,
     });
-    mutate("/api/bills");
   };
 
-  const handleSync = () => {
-    axios.post("/api/bills", { action: "sync", companyId: companyId });
+  const processBillSync = async () => {
+    await axios.post("/api/bills", { action: "sync", companyId: companyId });
   };
 
   const handlePayClick = async (billId) => {
-    processCodatPayment(billId);
+    setInPaymentProcess(true);
+    await processCodatPayment(billId);
     sessionStorage.setItem("latestPaidBillId", billId);
     handlePayModalClose();
-    handleSync();
+    setInPaymentProcess(false);
+    await processBillSync();
+    await mutateBills();
   };
 
   return bill ? (
@@ -115,13 +111,21 @@ export const PayModal = ({
           </div>
         )}
         <Divider />
-        <PayModalFields billData={bill} accountData={accountData} />
+        <PayModalFields
+          billData={bill}
+          accountData={accountData}
+          setAccountId={setAccountId}
+        />
         <div className={s.payBillButtonContainer}>
-          <Button
-            label="Pay Bill"
-            className={s.payBillButton}
-            onClick={() => handlePayClick(bill.id)}
-          />
+          {inPaymentProcess ? (
+            <Button isLoading={true} variant="primary" size="large" label=" " />
+          ) : (
+            <Button
+              label="Pay Bill"
+              className={s.payBillButton}
+              onClick={() => handlePayClick(bill.id)}
+            />
+          )}
         </div>
       </Box>
     </Modal>

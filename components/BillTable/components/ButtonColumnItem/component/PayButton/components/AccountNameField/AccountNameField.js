@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { BootstrapInput, renderMethod } from "./AccountNameField.helpers";
 
-export const AccountNameField = ({ billData, accountData }) => {
+export const AccountNameField = ({ billData, accountData, setAccountId }) => {
   const [accountName, setAccountName] = React.useState("");
 
   const handleChange = (event) => {
@@ -12,7 +12,7 @@ export const AccountNameField = ({ billData, accountData }) => {
     const currentAccount = accountData.find(
       (account) => account.accountName === event.target.value
     );
-    sessionStorage.setItem("accountId", currentAccount.accountId);
+    setAccountId(currentAccount.accountId);
   };
 
   const accountsFilteringConditions = (account) => {

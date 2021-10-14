@@ -36,11 +36,11 @@ export default function Bills() {
     setValue(window.sessionStorage.getItem("companyId"));
   }, [setValue]);
 
-  const { data: dataBills, error: errorBills } = useSWR(
-    ["/api/bills", companyId],
-    fetcherWithId,
-    { refreshInterval: 2000 }
-  );
+  const {
+    data: dataBills,
+    error: errorBills,
+    mutate: mutateBills,
+  } = useSWR(["/api/bills", companyId], fetcherWithId);
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
     ["/api/company", companyId],
@@ -53,8 +53,7 @@ export default function Bills() {
 
   const { data: dataStatus, error: errorDataStatus } = useSWR(
     ["/api/dataStatus", companyId],
-    fetcherWithId,
-    { refreshInterval: 2000 }
+    fetcherWithId
   );
 
   const billStatus = dataStatus && dataStatus.bills.currentStatus;
@@ -116,6 +115,7 @@ export default function Bills() {
               billData={listBills}
               accountData={accounts}
               billStatus={billStatus}
+              mutateBills={mutateBills}
             />
             <Footer />
           </div>
