@@ -16,7 +16,12 @@ import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
 import { useState, useEffect } from "react";
 
-export const BillTable = ({ billData, accountData, billStatus }) => {
+export const BillTable = ({
+  billData,
+  accountData,
+  billStatus,
+  mutateBills,
+}) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
 
@@ -39,6 +44,7 @@ export const BillTable = ({ billData, accountData, billStatus }) => {
             handlePayModalClose={onPayModalClose}
             billData={billData}
             accountData={accountData}
+            mutateBills={mutateBills}
           />
         </>
       )}

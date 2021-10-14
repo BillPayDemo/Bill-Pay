@@ -32,11 +32,10 @@ export const PayModal = ({
   handlePayModalClose,
   billData,
   accountData,
+  mutateBills,
 }) => {
   const { state } = useContext(BillModalContext);
   const bill = billData.find((bill) => bill.id === state.billSelected);
-
-  const { mutate } = useSWRConfig();
 
   const [connectionId, setConnectionId] = useState("");
   const [companyId, setCompanyId] = useState("");
@@ -55,24 +54,24 @@ export const PayModal = ({
   }, [setAccountId]);
 
   const processCodatPayment = async (id) => {
-    axios.put("/api/bills", {
+    await axios.put("/api/bills", {
       id: id,
       connectionId: connectionId,
       companyId: companyId,
       accountId: accountId,
     });
-    mutate("/api/bills");
   };
 
-  const handleSync = async () => {
-    axios.post("/api/bills", { action: "sync", companyId: companyId });
+  const processBillSync = async () => {
+    await axios.post("/api/bills", { action: "sync", companyId: companyId });
   };
 
   const handlePayClick = async (billId) => {
     await processCodatPayment(billId);
     sessionStorage.setItem("latestPaidBillId", billId);
     handlePayModalClose();
-    await handleSync();
+    await processBillSync();
+    await mutateBills();
   };
 
   return bill ? (
