@@ -17,7 +17,12 @@ export default async function handler(req, res) {
       }
       break;
     case "PUT":
-      if (!body.id || !body.connectionId || !body.companyId) {
+      if (
+        !body.id ||
+        !body.connectionId ||
+        !body.companyId ||
+        !body.accountId
+      ) {
         res.status(422).end("Missing id");
         break;
       }

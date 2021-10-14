@@ -54,12 +54,7 @@ export const PayModal = ({
     setAccountId(window.sessionStorage.getItem("accountId"));
   }, [setAccountId]);
 
-  const { data: dataStatus, error: errorDataStatus } = useSWR(
-    ["/api/dataStatus", companyId],
-    fetcherWithId
-  );
-
-  const processCodatPayment = (id) => {
+  const processCodatPayment = async (id) => {
     axios.put("/api/bills", {
       id: id,
       connectionId: connectionId,
@@ -69,15 +64,15 @@ export const PayModal = ({
     mutate("/api/bills");
   };
 
-  const handleSync = () => {
+  const handleSync = async () => {
     axios.post("/api/bills", { action: "sync", companyId: companyId });
   };
 
   const handlePayClick = async (billId) => {
-    processCodatPayment(billId);
+    await processCodatPayment(billId);
     sessionStorage.setItem("latestPaidBillId", billId);
     handlePayModalClose();
-    handleSync();
+    await handleSync();
   };
 
   return bill ? (
@@ -115,7 +110,11 @@ export const PayModal = ({
           </div>
         )}
         <Divider />
-        <PayModalFields billData={bill} accountData={accountData} />
+        <PayModalFields
+          billData={bill}
+          accountData={accountData}
+          setAccountId={setAccountId}
+        />
         <div className={s.payBillButtonContainer}>
           <Button
             label="Pay Bill"
