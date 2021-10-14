@@ -12,9 +12,8 @@ import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/
 import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
-import { useSWRConfig } from "swr";
+import "../../../../../../../../node_modules/@codat/orchard-ui/dist/index.css";
 import axios from "axios";
-import useSWR from "swr";
 
 const fetcherWithId = (url, companyId) =>
   axios
@@ -40,6 +39,7 @@ export const PayModal = ({
   const [connectionId, setConnectionId] = useState("");
   const [companyId, setCompanyId] = useState("");
   const [accountId, setAccountId] = useState("");
+  const [inPaymentProcess, setInPaymentProcess] = useState(false);
 
   useEffect(() => {
     setConnectionId(window.sessionStorage.getItem("connectionId"));
@@ -67,9 +67,11 @@ export const PayModal = ({
   };
 
   const handlePayClick = async (billId) => {
+    setInPaymentProcess(true);
     await processCodatPayment(billId);
     sessionStorage.setItem("latestPaidBillId", billId);
     handlePayModalClose();
+    setInPaymentProcess(false);
     await processBillSync();
     await mutateBills();
   };
@@ -115,11 +117,15 @@ export const PayModal = ({
           setAccountId={setAccountId}
         />
         <div className={s.payBillButtonContainer}>
-          <Button
-            label="Pay Bill"
-            className={s.payBillButton}
-            onClick={() => handlePayClick(bill.id)}
-          />
+          {inPaymentProcess ? (
+            <Button isLoading={true} variant="primary" size="large" label=" " />
+          ) : (
+            <Button
+              label="Pay Bill"
+              className={s.payBillButton}
+              onClick={() => handlePayClick(bill.id)}
+            />
+          )}
         </div>
       </Box>
     </Modal>
