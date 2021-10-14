@@ -24,12 +24,6 @@ const fetcherWithId = (url, companyId) =>
     });
 
 export default function Bills() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 6000);
-  }, []);
-
   const [companyId, setValue] = useState("");
 
   useEffect(() => {
@@ -55,6 +49,9 @@ export default function Bills() {
     ["/api/dataStatus", companyId],
     fetcherWithId
   );
+
+  const isDataLoaded =
+    dataBills && dataCompanyInfo && dataAccounts && dataStatus;
 
   const billStatus = dataStatus && dataStatus.bills.currentStatus;
 
@@ -87,7 +84,7 @@ export default function Bills() {
 
   return (
     <>
-      {loading === false ? (
+      {isDataLoaded ? (
         <div>
           <Head>
             <title>Bills</title>
