@@ -2,7 +2,7 @@ export const boxStyling = {
   position: "absolute",
   top: "45%",
   left: "50%",
-  width: "70%",
+  width: "40%",
   transform: "translate(-50%, -50%)",
   p: 4,
   background: "#FFFFFF",
