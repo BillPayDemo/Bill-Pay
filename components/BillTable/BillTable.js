@@ -9,8 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import s from "./BillTable.module.css";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
-import moment from "moment";
-import { getFormattedAmount, FormattedCell } from "./BillTable.helpers";
+import {
+  getFormattedAmount,
+  getFormattedDate,
+  FormattedCell,
+} from "./BillTable.helpers";
 import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/components/ViewModal/ViewModal";
 import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
 import { useContext } from "react";
@@ -101,9 +104,7 @@ export const BillTable = ({
                         },
                       }}
                     >
-                      <FormattedCell
-                        text={moment(bill.issueDate).format("MMM DD, YYYY")}
-                      />
+                      <FormattedCell text={getFormattedDate(bill.issueDate)} />
                       <FormattedCell text={bill.supplierName} />
                       <FormattedCell text={bill.accountName} />
                       <FormattedCell

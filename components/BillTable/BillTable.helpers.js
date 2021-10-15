@@ -1,3 +1,4 @@
+import moment from "moment";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { Typography } from "@codat/orchard-ui";
 import TableCell from "@mui/material/TableCell";
@@ -38,3 +39,5 @@ export const FormattedCell = ({
     </>
   );
 };
+
+export const getFormattedDate = (date) => moment(date).format("MMM DD, YYYY");
