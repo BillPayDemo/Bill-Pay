@@ -34,19 +34,19 @@ export default function Bills() {
     data: dataBills,
     error: errorBills,
     mutate: mutateBills,
-  } = useSWR(["/api/bills", companyId], fetcherWithId);
+  } = useSWR(companyId ? ["/api/bills", companyId] : null, fetcherWithId);
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
-    ["/api/company", companyId],
+    companyId ? ["/api/company", companyId] : null,
     fetcherWithId
   );
   const { data: dataAccounts, error: errorAccounts } = useSWR(
-    ["/api/accounts", companyId],
+    companyId ? ["/api/accounts", companyId] : null,
     fetcherWithId
   );
 
   const { data: dataStatus, error: errorDataStatus } = useSWR(
-    ["/api/dataStatus", companyId],
+    companyId ? ["/api/dataStatus", companyId] : null,
     fetcherWithId
   );
 

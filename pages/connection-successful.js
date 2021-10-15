@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import useSWR from "swr";
 
-const fetcherWithId = (url, companyId) =>
-  axios
+const fetcherWithId = async (url, companyId) =>
+  await axios
     .get(url, {
       params: {
         id: companyId,
@@ -27,7 +27,7 @@ export default function ConnectionSuccessful() {
   }, [setValue]);
 
   const { data: connectionData, error: errorConnection } = useSWR(
-    ["/api/connections", companyId],
+    companyId ? ["/api/connections", companyId] : null,
     fetcherWithId
   );
 
