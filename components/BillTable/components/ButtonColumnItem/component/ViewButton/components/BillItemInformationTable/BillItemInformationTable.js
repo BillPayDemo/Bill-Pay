@@ -16,7 +16,7 @@ const ItemFormattedCell = ({ text, align = "left", padding = "16px" }) => {
     <FormattedCell
       text={text}
       colour="#29262B"
-      fontSize="14px"
+      fontSize="12px"
       align={align}
       padding={padding}
     />
