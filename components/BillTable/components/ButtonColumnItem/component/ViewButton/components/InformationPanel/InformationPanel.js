@@ -1,8 +1,8 @@
 import React from "react";
+import Divider from "@mui/material/Divider";
 import s from "./InformationPanel.module.css";
 import { SpaceBetweenDataPoint } from "../../../../../../../SpaceBetweenDataPoint/SpaceBetweenDataPoint";
-import moment from "moment";
-import Divider from "@mui/material/Divider";
+import { getFormattedDate } from "../../../../../../BillTable.helpers";
 
 export const InformationPanel = ({ billData }) => {
   return (
@@ -15,11 +15,11 @@ export const InformationPanel = ({ billData }) => {
       <div className={s.subSection}>
         <SpaceBetweenDataPoint
           label="Date issued"
-          value={moment(billData.issueDate).format("MMM DD, YYYY")}
+          value={getFormattedDate(billData.issueDate)}
         />
         <SpaceBetweenDataPoint
           label="Due date"
-          value={moment(billData.dueDate).format("MMM DD, YYYY")}
+          value={getFormattedDate(billData.dueDate)}
         />
       </div>
     </div>
