@@ -9,7 +9,13 @@ export default async function handler(req, res) {
       const queryRaw = url.split("?")[1];
       const query = new URLSearchParams(queryRaw);
       const id = query.get("id");
-      var [codatStatus, results] = await getBillsCodat(id);
+      const pageSize = query.get("pageSize");
+      const pageNumber = query.get("pageNumber");
+      var [codatStatus, results] = await getBillsCodat(
+        id,
+        pageSize,
+        pageNumber
+      );
       res.status(codatStatus).json(results);
       break;
     case "PUT":

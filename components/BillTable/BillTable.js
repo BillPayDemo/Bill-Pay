@@ -24,20 +24,22 @@ export const BillTable = ({
   accountData,
   billStatus,
   mutateBills,
+  pageNumber,
+  setPageNumber,
+  rowsPerPage,
+  setRowsPerPage,
+  totalResults,
 }) => {
   const { state, onViewModalClose, onPayModalClose } =
     useContext(BillModalContext);
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(25);
-
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+    setPageNumber(newPage + 1);
   };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setPageNumber(1);
   };
 
   return (
@@ -93,40 +95,38 @@ export const BillTable = ({
             </TableHead>
             <TableBody>
               {billData &&
-                billData
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((bill) => (
-                    <TableRow
-                      key={bill.id}
-                      sx={{
-                        "&:last-child td, &:last-child th": {
-                          border: 0,
-                        },
-                      }}
-                    >
-                      <FormattedCell text={getFormattedDate(bill.issueDate)} />
-                      <FormattedCell text={bill.supplierName} />
-                      <FormattedCell text={bill.accountName} />
-                      <FormattedCell
-                        text={getFormattedAmount(bill.currency, bill.amountDue)}
+                billData.map((bill) => (
+                  <TableRow
+                    key={bill.id}
+                    sx={{
+                      "&:last-child td, &:last-child th": {
+                        border: 0,
+                      },
+                    }}
+                  >
+                    <FormattedCell text={getFormattedDate(bill.issueDate)} />
+                    <FormattedCell text={bill.supplierName} />
+                    <FormattedCell text={bill.accountName} />
+                    <FormattedCell
+                      text={getFormattedAmount(bill.currency, bill.amountDue)}
+                    />
+                    <TableCell className={s.buttonsTableCell}>
+                      <ButtonColumnItem
+                        billData={bill}
+                        billStatus={billStatus}
                       />
-                      <TableCell className={s.buttonsTableCell}>
-                        <ButtonColumnItem
-                          billData={bill}
-                          billStatus={billStatus}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={billData.length}
+          count={totalResults}
           rowsPerPage={rowsPerPage}
-          page={page}
+          page={pageNumber - 1}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />

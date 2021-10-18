@@ -1,5 +1,6 @@
 import axios from "axios";
 import useSWR from "swr";
+import React from "react";
 import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
 import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 import { BillTable } from "../components/BillTable/BillTable";
@@ -12,11 +13,13 @@ import s from "../styles/Bills.module.css";
 import Box from "@mui/material/Box";
 import { boxStyling } from "../styles/Bills.styling";
 
-const fetcherWithId = (url, companyId) =>
+const fetcherWithId = (url, companyId, page, rowsPerPage) =>
   axios
     .get(url, {
       params: {
         id: companyId,
+        pageSize: rowsPerPage,
+        pageNumber: page,
       },
     })
     .then((res) => {
@@ -25,16 +28,23 @@ const fetcherWithId = (url, companyId) =>
 
 export default function Bills() {
   const [companyId, setValue] = useState("");
+  const [page, setPage] = React.useState(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
   useEffect(() => {
     setValue(window.sessionStorage.getItem("companyId"));
   }, [setValue]);
 
   const {
-    data: dataBills,
+    data: dataResult,
     error: errorBills,
     mutate: mutateBills,
-  } = useSWR(companyId ? ["/api/bills", companyId] : null, fetcherWithId);
+  } = useSWR(
+    companyId ? ["/api/bills", companyId, page, rowsPerPage] : null,
+    fetcherWithId
+  );
+
+  const dataBills = dataResult?.results;
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
     companyId ? ["/api/company", companyId] : null,
@@ -113,6 +123,11 @@ export default function Bills() {
               accountData={accounts}
               billStatus={billStatus}
               mutateBills={mutateBills}
+              pageNumber={page}
+              setPageNumber={setPage}
+              rowsPerPage={rowsPerPage}
+              setRowsPerPage={setRowsPerPage}
+              totalResults={dataResult.totalResults}
             />
             <Footer />
           </div>
