@@ -4,7 +4,7 @@ import { Button } from "@codat/orchard-ui";
 import s from "./PayModal.module.css";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { Divider, IconButton } from "@mui/material";
+import { Divider, IconButton, CircularProgress } from "@mui/material";
 import { modalStyling, closeButtonStyling } from "../../../../Modal.styling";
 import { CloseIcon } from "@codat/orchard-ui";
 import { DotDataPoint } from "../../../../../../../DotDataPoint/DotDataPoint";
@@ -118,7 +118,7 @@ export const PayModal = ({
         />
         <div className={s.payBillButtonContainer}>
           {inPaymentProcess ? (
-            <Button isLoading={true} variant="primary" size="large" label=" " />
+            <CircularProgress />
           ) : (
             <Button
               label="Pay Bill"
