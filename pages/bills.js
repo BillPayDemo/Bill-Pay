@@ -96,7 +96,7 @@ export default function Bills() {
     <>
       <style>{"body { overflow-y: scroll; }"}</style>
       {isDataLoaded ? (
-        <div className={s.billsContainer}>
+        <div>
           <Head>
             <title>Bills</title>
             <link rel="icon" href="/favicon.ico" />
