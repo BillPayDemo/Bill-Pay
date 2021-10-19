@@ -103,6 +103,7 @@ export default function Bills() {
 
   return (
     <>
+      <style>{"body { overflow-y: scroll; }"}</style>
       {isDataLoaded ? (
         <div>
           <Head>
@@ -138,8 +139,8 @@ export default function Bills() {
               setRowsPerPage={setRowsPerPage}
               totalResults={dataResult.totalResults}
             />
-            <Footer />
           </div>
+          <Footer />
         </div>
       ) : (
         <>
