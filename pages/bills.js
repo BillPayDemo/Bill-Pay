@@ -95,7 +95,7 @@ export default function Bills() {
   return (
     <>
       {isDataLoaded ? (
-        <div>
+        <div className={s.billsContainer}>
           <Head>
             <title>Bills</title>
             <link rel="icon" href="/favicon.ico" />
@@ -129,8 +129,8 @@ export default function Bills() {
               setRowsPerPage={setRowsPerPage}
               totalResults={dataResult.totalResults}
             />
-            <Footer />
           </div>
+          <Footer />
         </div>
       ) : (
         <>
