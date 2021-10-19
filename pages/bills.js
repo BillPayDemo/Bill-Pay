@@ -94,6 +94,7 @@ export default function Bills() {
 
   return (
     <>
+      <style>{"body { overflow-y: scroll; }"}</style>
       {isDataLoaded ? (
         <div className={s.billsContainer}>
           <Head>

@@ -81,6 +81,7 @@ export const PayModal = ({
       open={isPayModalOpen}
       onClose={handlePayModalClose}
       BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
+      disableScrollLock={true}
     >
       <Box sx={modalStyling}>
         <IconButton

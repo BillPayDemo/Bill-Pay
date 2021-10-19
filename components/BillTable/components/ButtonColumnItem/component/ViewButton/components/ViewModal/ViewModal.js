@@ -24,6 +24,7 @@ export const ViewModal = ({
       open={isViewModalOpen}
       onClose={handleViewModalClose}
       BackdropProps={{ style: { opacity: 0.8, background: "white" } }}
+      disableScrollLock={true}
     >
       <Box sx={modalStyling}>
         <IconButton
