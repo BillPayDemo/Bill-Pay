@@ -35,6 +35,11 @@ export default function Bills() {
     setValue(window.sessionStorage.getItem("companyId"));
   }, [setValue]);
 
+  const { data: dataStatus, error: errorDataStatus } = useSWR(
+    companyId ? ["/api/dataStatus", companyId] : null,
+    fetcherWithId
+  );
+
   const {
     data: dataResult,
     error: errorBills,
@@ -52,11 +57,6 @@ export default function Bills() {
   );
   const { data: dataAccounts, error: errorAccounts } = useSWR(
     companyId ? ["/api/accounts", companyId] : null,
-    fetcherWithId
-  );
-
-  const { data: dataStatus, error: errorDataStatus } = useSWR(
-    companyId ? ["/api/dataStatus", companyId] : null,
     fetcherWithId
   );
 
