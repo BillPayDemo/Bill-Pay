@@ -45,19 +45,28 @@ export default function Bills() {
     error: errorBills,
     mutate: mutateBills,
   } = useSWR(
-    companyId ? ["/api/bills", companyId, page, rowsPerPage] : null,
-    fetcherWithId
+    companyId ? ["/api/bills", companyId, page, rowsPerPage, dataStatus] : null,
+    fetcherWithId,
+    {
+      isPaused: () => !dataStatus,
+    }
   );
 
   const dataBills = dataResult?.results;
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
-    companyId ? ["/api/company", companyId] : null,
-    fetcherWithId
+    companyId ? ["/api/company", companyId, dataStatus] : null,
+    fetcherWithId,
+    {
+      isPaused: () => !dataStatus,
+    }
   );
   const { data: dataAccounts, error: errorAccounts } = useSWR(
-    companyId ? ["/api/accounts", companyId] : null,
-    fetcherWithId
+    companyId ? ["/api/accounts", companyId, dataStatus] : null,
+    fetcherWithId,
+    {
+      isPaused: () => !dataStatus,
+    }
   );
 
   const isDataLoaded =
