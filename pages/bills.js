@@ -13,8 +13,8 @@ import s from "../styles/Bills.module.css";
 import Box from "@mui/material/Box";
 import { boxStyling } from "../styles/Bills.styling";
 
-const fetcherWithId = (url, companyId, page, rowsPerPage) =>
-  axios
+const fetcherWithId = async (url, companyId, page, rowsPerPage) =>
+  await axios
     .get(url, {
       params: {
         id: companyId,
