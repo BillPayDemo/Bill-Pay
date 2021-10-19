@@ -13,8 +13,8 @@ import s from "../styles/Bills.module.css";
 import Box from "@mui/material/Box";
 import { boxStyling } from "../styles/Bills.styling";
 
-const fetcherWithId = (url, companyId, page, rowsPerPage) =>
-  axios
+const fetcherWithId = async (url, companyId, page, rowsPerPage) =>
+  await axios
     .get(url, {
       params: {
         id: companyId,
@@ -45,19 +45,28 @@ export default function Bills() {
     error: errorBills,
     mutate: mutateBills,
   } = useSWR(
-    companyId ? ["/api/bills", companyId, page, rowsPerPage] : null,
-    fetcherWithId
+    companyId ? ["/api/bills", companyId, page, rowsPerPage, dataStatus] : null,
+    fetcherWithId,
+    {
+      isPaused: () => !dataStatus,
+    }
   );
 
   const dataBills = dataResult?.results;
 
   const { data: dataCompanyInfo, error: errorCompanyInfo } = useSWR(
-    companyId ? ["/api/company", companyId] : null,
-    fetcherWithId
+    companyId ? ["/api/company", companyId, dataStatus] : null,
+    fetcherWithId,
+    {
+      isPaused: () => !dataStatus,
+    }
   );
   const { data: dataAccounts, error: errorAccounts } = useSWR(
-    companyId ? ["/api/accounts", companyId] : null,
-    fetcherWithId
+    companyId ? ["/api/accounts", companyId, dataStatus] : null,
+    fetcherWithId,
+    {
+      isPaused: () => !dataStatus,
+    }
   );
 
   const isDataLoaded =
