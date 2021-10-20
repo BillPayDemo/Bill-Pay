@@ -1,30 +1,18 @@
-import React, { useContext } from "react";
-import { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import { Button } from "@codat/orchard-ui";
-import s from "./PayModal.module.css";
+import { CloseIcon } from "@codat/orchard-ui";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Divider, IconButton, CircularProgress } from "@mui/material";
-import { modalStyling, closeButtonStyling } from "../../../../Modal.styling";
-import { CloseIcon } from "@codat/orchard-ui";
 import { DotDataPoint } from "../../../../../../../DotDataPoint/DotDataPoint";
 import { TitleWithSubHeadings } from "../../../../../../../TitleWithSubHeadings/TitleWithSubHeadings";
-import { getFormattedAmount } from "../../../../../../BillTable.helpers";
 import { PayModalFields } from "../PayModalFields/PayModalFields";
 import { BillModalContext } from "../../../../../../../ModalStore/ModalStore";
 import "../../../../../../../../node_modules/@codat/orchard-ui/dist/index.css";
-import axios from "axios";
-
-const fetcherWithId = (url, companyId) =>
-  axios
-    .get(url, {
-      params: {
-        id: companyId,
-      },
-    })
-    .then((res) => {
-      return res.data;
-    });
+import { getFormattedAmount } from "../../../../../../BillTable.helpers";
+import { modalStyling, closeButtonStyling } from "../../../../Modal.styling";
+import s from "./PayModal.module.css";
 
 export const PayModal = ({
   isPayModalOpen,
