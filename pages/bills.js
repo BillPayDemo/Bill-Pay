@@ -1,25 +1,33 @@
 import axios from "axios";
 import useSWR from "swr";
 import React from "react";
+import { useState, useEffect } from "react";
+import Head from "next/head";
 import { CompanyHeader } from "../components/CompanyHeader/CompanyHeader";
 import { TitleWithSubHeadings } from "../components/TitleWithSubHeadings/TitleWithSubHeadings";
 import { BillTable } from "../components/BillTable/BillTable";
-import Divider from "@mui/material/Divider";
 import { Footer } from "../components/Footer/Footer";
-import Head from "next/head";
-import { useState, useEffect } from "react";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
+import { Switch } from "@mui/material";
 import { Spinner, Typography } from "@codat/orchard-ui";
 import s from "../styles/Bills.module.css";
-import Box from "@mui/material/Box";
 import { boxStyling } from "../styles/Bills.styling";
 
-const fetcherWithId = async (url, companyId, page, rowsPerPage) =>
+const fetcherWithId = async (
+  url,
+  companyId,
+  page,
+  rowsPerPage,
+  isFilteredBills
+) =>
   await axios
     .get(url, {
       params: {
         id: companyId,
         pageSize: rowsPerPage,
         pageNumber: page,
+        isFilteredBills: isFilteredBills,
       },
     })
     .then((res) => {
@@ -30,10 +38,16 @@ export default function Bills() {
   const [companyId, setValue] = useState("");
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [isFilteredBills, setIsFilteredBills] = React.useState(false);
 
   useEffect(() => {
     setValue(window.sessionStorage.getItem("companyId"));
   }, [setValue]);
+
+  const handleSwitchChange = () => {
+    setIsFilteredBills(!isFilteredBills);
+    setPage(1);
+  };
 
   const { data: dataStatus, error: errorDataStatus } = useSWR(
     companyId ? ["/api/dataStatus", companyId] : null,
@@ -45,7 +59,16 @@ export default function Bills() {
     error: errorBills,
     mutate: mutateBills,
   } = useSWR(
-    companyId ? ["/api/bills", companyId, page, rowsPerPage, dataStatus] : null,
+    companyId
+      ? [
+          "/api/bills",
+          companyId,
+          page,
+          rowsPerPage,
+          isFilteredBills,
+          dataStatus,
+        ]
+      : null,
     fetcherWithId,
     {
       isPaused: () => !dataStatus,
@@ -119,12 +142,26 @@ export default function Bills() {
             }}
           >
             {dataCompanyInfo !== undefined && (
-              <div style={{ marginBottom: "25px" }}>
+              <div className={s.companyInfoHeading}>
                 <TitleWithSubHeadings
                   mainTitle="Bill Pay"
                   upperTitle={dataCompanyInfo.companyName}
                   lowerTitle="Easily view and pay outstanding supplier invoices"
                 />
+                <div className={s.switch}>
+                  <Typography
+                    variant="small"
+                    className={s.smallText}
+                    style={{ margin: "0" }}
+                  >
+                    View unpaid bills only
+                  </Typography>
+                  <Switch
+                    size="small"
+                    checked={isFilteredBills}
+                    onChange={() => handleSwitchChange()}
+                  />
+                </div>
               </div>
             )}
             <Divider />

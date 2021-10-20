@@ -5,3 +5,18 @@
   align-items: center;
   padding: 44px;
 }
+
+.companyInfoHeading {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.switch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8px;
+}
