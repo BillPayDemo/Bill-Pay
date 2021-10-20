@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,16 +7,15 @@ import TablePagination from "@mui/material/TablePagination";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import s from "./BillTable.module.css";
 import { ButtonColumnItem } from "./components/ButtonColumnItem/ButtonColumnItem";
+import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/components/ViewModal/ViewModal";
+import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
+import s from "./BillTable.module.css";
 import {
   getFormattedAmount,
   getFormattedDate,
   FormattedCell,
 } from "./BillTable.helpers";
-import { ViewModal } from "./components/ButtonColumnItem/component/ViewButton/components/ViewModal/ViewModal";
-import { PayModal } from "./components/ButtonColumnItem/component/PayButton/components/PayModal/PayModal";
-import { useContext } from "react";
 import { BillModalContext } from "../ModalStore/ModalStore";
 
 export const BillTable = ({
@@ -129,6 +128,11 @@ export const BillTable = ({
           page={pageNumber - 1}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          SelectProps={{
+            MenuProps: {
+              disableScrollLock: true,
+            },
+          }}
         />
       </div>
     </>

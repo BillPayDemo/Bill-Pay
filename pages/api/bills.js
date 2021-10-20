@@ -11,10 +11,12 @@ export default async function handler(req, res) {
       const id = query.get("id");
       const pageSize = query.get("pageSize");
       const pageNumber = query.get("pageNumber");
+      const isFilteredBills = query.get("isFilteredBills");
       var [codatStatus, results] = await getBillsCodat(
         id,
         pageSize,
-        pageNumber
+        pageNumber,
+        isFilteredBills
       );
       res.status(codatStatus).json(results);
       break;
